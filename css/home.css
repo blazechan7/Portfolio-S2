@@ -89,6 +89,7 @@
     font-size: 30px;
     font-weight: bold;
     font-family: monospace;
+    animation: blink 2s ease-in-out infinite;
 }
 
 .plus-1 {
@@ -119,6 +120,36 @@
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
+.home-text {
+    flex: 1;
+    position: relative;
+}
+
+.welcome-container {
+    position: relative;
+    padding: 25px;
+    box-shadow: 0 0 0 3px #3A3A70, 0 0 0 6px rgba(191, 236, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(3px);
+    animation: scanlines 2s linear infinite;
+}
+
+@keyframes scanlines {
+    0% {
+        background-image: linear-gradient(to bottom, 
+            transparent 50%, 
+            rgba(58, 58, 112, 0.05) 50%);
+        background-size: 100% 4px;
+    }
+    100% {
+        background-image: linear-gradient(to bottom, 
+            transparent 50%, 
+            rgba(58, 58, 112, 0.05) 50%);
+        background-size: 100% 4px;
+        background-position: 0 4px;
+    }
+}
+
 .home-text-divider {
     height: 4px;
     background-color: #3A3A70;
@@ -130,16 +161,47 @@
 
 .home-content {
     display: flex;
-    align-items: center;
-    gap: 40px;
+    align-items: flex-start;
+    gap: 80px;
     width: 100%;
+    position: relative;
 }
 
 .home-image {
     flex: 0.8;
     max-width: 300px;
     aspect-ratio: 1/1;
-    border: 4px solid #FFF6E3; 
+    position: relative;
+    border: none;
+    filter: drop-shadow(5px 5px 0 rgba(58, 58, 112, 0.3));
+}
+
+.home-image::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    right: -8px;
+    bottom: -8px;
+    background: transparent;
+    background-image: 
+        linear-gradient(45deg, #BFECFF 25%, transparent 25%),
+        linear-gradient(-45deg, #BFECFF 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #BFECFF 75%),
+        linear-gradient(-45deg, transparent 75%, #BFECFF 75%);
+    background-size: 16px 16px;
+    background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
+    z-index: -1;
+    animation: pixelate 3s linear infinite alternate;
+}
+
+@keyframes pixelate {
+    0% {
+        background-size: 16px 16px;
+    }
+    100% {
+        background-size: 24px 24px;
+    }
 }
 
 .home-image img {
@@ -147,16 +209,24 @@
     height: 100%;
     object-fit: cover;
     border-radius: 0; 
-    box-shadow: none; 
+    box-shadow: none;
+    border: 8px solid #FFF6E3;
+    outline: 4px solid #3A3A70;
+    image-rendering: pixelated;
+    transition: all 0.3s ease;
 }
 
-.home-text {
-    flex: 1;
+.home-image img:hover {
+    transform: scale(1.02);
+    outline-color: #BFECFF;
 }
 
 .home-text p {
     color: #3A3A70; 
     max-width: 80%;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 500;
+    margin-bottom: 15px;
 }
 
 /* Responsive Design */
@@ -176,11 +246,17 @@
     .home-content {
         flex-direction: column;
         text-align: center;
+        gap: 40px;
     }
 
     .home-image {
         margin-bottom: 30px;
         max-width: 250px;
+    }
+    
+    .welcome-container {
+        max-width: 100%;
+        text-align: center;
     }
     
     .home-text p {
@@ -231,4 +307,44 @@
 
 .star-large-3 {
     animation: twinkle 4.5s infinite ease-in-out;
+}
+
+/* Animation voor knipperende plus-decoraties */
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+/* Interactieve pixelblokken */
+@keyframes float-block {
+    0%, 100% { transform: rotate(45deg) translateY(0); }
+    50% { transform: rotate(45deg) translateY(-15px); }
+}
+
+/* Een aantal pixel blokken plaatsen */
+.home-content::before {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-color: #BFECFF;
+    top: -20px;
+    left: 10%;
+    transform: rotate(45deg);
+    opacity: 0.7;
+    animation: float-block 4s ease-in-out infinite;
+}
+
+.home-content::after {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-color: #3A3A70;
+    bottom: -20px;
+    right: 10%;
+    transform: rotate(45deg);
+    opacity: 0.7;
+    animation: float-block 4s ease-in-out infinite;
+    animation-delay: 1s;
 }

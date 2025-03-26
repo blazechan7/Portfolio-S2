@@ -193,6 +193,48 @@ footer {
     color: #FFF6E3;
     padding: 30px 0;
     text-align: center;
+    position: relative;
+    animation: scanlines 2s linear infinite;
+}
+
+@keyframes scanlines {
+    0% {
+        background-image: linear-gradient(to bottom, 
+            transparent 50%, 
+            rgba(58, 58, 112, 0.05) 50%);
+        background-size: 100% 4px;
+    }
+    100% {
+        background-image: linear-gradient(to bottom, 
+            transparent 50%, 
+            rgba(58, 58, 112, 0.05) 50%);
+        background-size: 100% 4px;
+        background-position: 0 4px;
+    }
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-color: #BFECFF;
+    top: -6px;
+    left: 20%;
+    transform: rotate(45deg);
+    opacity: 0.7;
+}
+
+footer::after {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-color: #3A3A70;
+    top: -6px;
+    right: 20%;
+    transform: rotate(45deg);
+    opacity: 0.7;
 }
 
 h2 {

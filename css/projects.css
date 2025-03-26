@@ -46,13 +46,41 @@
     z-index: 1;
 }
 
+/* Pixelblokken aan de tabs toevoegen */
+.projects-tabs::before {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-color: #BFECFF;
+    top: -10px;
+    left: 10%;
+    transform: rotate(45deg);
+    opacity: 0.7;
+    animation: float-block 4s ease-in-out infinite;
+}
+
+.projects-tabs::after {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-color: #3A3A70;
+    bottom: -10px;
+    right: 10%;
+    transform: rotate(45deg);
+    opacity: 0.7;
+    animation: float-block 4s ease-in-out infinite;
+    animation-delay: 1s;
+}
+
 .tab-button {
     padding: 10px 20px;
     background: none;
     border: none;
     cursor: pointer;
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 500;
     position: relative;
     font-family: 'Open Sans', sans-serif;
     color: #3A3A70; 
@@ -60,7 +88,7 @@
 
 .tab-button.active {
     color: #3A3A70; 
-    font-weight: bold;
+    font-weight: 600;
 }
 
 .tab-button.active::after {
@@ -71,6 +99,36 @@
     width: 100%;
     height: 3px;
     background-color: #3A3A70; 
+}
+
+.tab-content {
+    position: relative;
+    z-index: 1;
+}
+
+#info, #process {
+    position: relative;
+    padding: 25px;
+    box-shadow: 0 0 0 3px #3A3A70, 0 0 0 6px rgba(191, 236, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(3px);
+    animation: scanlines 2s linear infinite;
+}
+
+@keyframes scanlines {
+    0% {
+        background-image: linear-gradient(to bottom, 
+            transparent 50%, 
+            rgba(58, 58, 112, 0.05) 50%);
+        background-size: 100% 4px;
+    }
+    100% {
+        background-image: linear-gradient(to bottom, 
+            transparent 50%, 
+            rgba(58, 58, 112, 0.05) 50%);
+        background-size: 100% 4px;
+        background-position: 0 4px;
+    }
 }
 
 .tab-pane {
@@ -94,10 +152,24 @@
     border: 4px solid #3A3A70; 
     overflow: hidden;
     transition: transform 0.3s;
+    position: relative;
 }
 
 .project-card:hover {
     transform: translateY(-5px);
+}
+
+.project-card::before {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-color: #BFECFF;
+    top: -6px;
+    right: -6px;
+    transform: rotate(45deg);
+    opacity: 0.7;
+    z-index: 10;
 }
 
 .project-card-image {
@@ -116,6 +188,12 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    image-rendering: pixelated;
+    transition: all 0.3s ease;
+}
+
+.project-card-image img:hover {
+    transform: scale(1.02);
 }
 
 .project-card h3 {
@@ -126,9 +204,21 @@
 }
 
 .project-card p {
-    padding: 0 15px 15px;
-    font-size: 0.9rem;
+    padding: 15px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 500;
     color: #3A3A70; 
+}
+
+.tab-pane p {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 500;
+}
+
+/* Animatie voor zwevende pixelblokken */
+@keyframes float-block {
+    0%, 100% { transform: rotate(45deg) translateY(0); }
+    50% { transform: rotate(45deg) translateY(-15px); }
 }
 
 /* Responsive Design */
@@ -232,12 +322,19 @@
     animation: project-twinkle 4.9s infinite ease-in-out;
 }
 
+/* Animatie voor project plus decoraties */
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
 .project-plus {
     position: absolute;
     color: #3A3A70;
     font-size: 30px;
     font-weight: bold;
     font-family: monospace;
+    animation: blink 2s ease-in-out infinite;
 }
 
 .project-plus-1 {
