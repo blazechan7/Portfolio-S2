@@ -4,11 +4,29 @@
     box-sizing: border-box;
 }
 
+:root {
+    --color-primary: #3A3A70;
+    --color-purple-light: #CDC1FF;
+    --color-pink-light: #FFCCEA;
+    --color-blue-light: #BFECFF;
+    --color-cream: #FFF6E3;
+    --color-gray: #767676;
+    --color-white: #FFFFFF;
+    --color-white-transparent: rgba(255, 255, 255, 0.1);
+    --color-primary-transparent: rgba(58, 58, 112, 0.05);
+    --color-primary-shadow: rgba(58, 58, 112, 0.3);
+    --color-primary-nav: rgba(58, 58, 112, 0.7);
+    --color-highlight-shadow: rgba(255, 206, 234, 0.5);
+    --color-blue-highlight-shadow: rgba(191, 236, 255, 0.5);
+    --color-dark-gray: #333;
+    --color-beige: #EADBC8;
+}
+
 body {
     font-family: 'Open Sans', sans-serif;
     line-height: 1.6;
     overflow-x: hidden;
-    color: #333;
+    color: var(--color-dark-gray);
 }
 
 h1, h2, h3, .loading-text {
@@ -45,16 +63,16 @@ nav.scrolled {
 
 nav:hover, nav.visible {
     transform: translateY(0);
-    background-color: rgba(58, 58, 112, 0.7);
+    background-color: var(--color-primary-nav);
     backdrop-filter: blur(5px);
 }
 
 .logo {
     font-size: 16px;
     font-family: 'Open Sans', sans-serif;
-    background-color: #EADBC8;
+    background-color: var(--color-beige);
     padding: 10px 15px;
-    border: 2px solid #FFF6E3;
+    border: 2px solid var(--color-cream);
 }
 
 .nav-links {
@@ -69,7 +87,7 @@ nav:hover, nav.visible {
 
 .nav-links a {
     text-decoration: none;
-    color: #FFF6E3;
+    color: var(--color-cream);
     font-family: 'Press Start 2P', cursive;
     font-size: 14px;
     padding: 12px 20px;
@@ -95,7 +113,7 @@ nav:hover, nav.visible {
 .nav-links a .pixel-border-bottom,
 .nav-links a .pixel-border-left {
     position: absolute;
-    background-color: #FFF6E3;
+    background-color: var(--color-cream);
 }
 
 .nav-links a .pixel-border-top {
@@ -130,11 +148,11 @@ nav:hover, nav.visible {
 .nav-links a:hover .pixel-border-right,
 .nav-links a:hover .pixel-border-bottom,
 .nav-links a:hover .pixel-border-left {
-    background-color: #FFCCEA;
+    background-color: var(--color-pink-light);
 }
 
 .nav-links a:hover {
-    color: #FFCCEA;
+    color: var(--color-blue-light);
     transform: translateY(-2px);
 }
 
@@ -146,7 +164,7 @@ nav:hover, nav.visible {
 .burger div {
     width: 25px;
     height: 3px;
-    background-color: #333;
+    background-color: var(--color-dark-gray);
     margin: 5px;
     transition: all 0.3s ease;
 }
@@ -173,7 +191,7 @@ nav:hover, nav.visible {
 .pixel-divider-item {
     width: 10px;
     height: 10px;
-    background-color: #3A3A70; 
+    background-color: var(--color-primary);
 }
 
 .pixel-divider-item:nth-child(even) {
@@ -189,8 +207,8 @@ nav:hover, nav.visible {
 }
 
 footer {
-    background-color: #767676;
-    color: #FFF6E3;
+    background-color: var(--color-gray);
+    color: var(--color-cream);
     padding: 30px 0;
     text-align: center;
     position: relative;
@@ -201,13 +219,13 @@ footer {
     0% {
         background-image: linear-gradient(to bottom, 
             transparent 50%, 
-            rgba(58, 58, 112, 0.05) 50%);
+            var(--color-primary-transparent) 50%);
         background-size: 100% 4px;
     }
     100% {
         background-image: linear-gradient(to bottom, 
             transparent 50%, 
-            rgba(58, 58, 112, 0.05) 50%);
+            var(--color-primary-transparent) 50%);
         background-size: 100% 4px;
         background-position: 0 4px;
     }
@@ -218,7 +236,7 @@ footer::before {
     position: absolute;
     width: 12px;
     height: 12px;
-    background-color: #BFECFF;
+    background-color: var(--color-blue-light);
     top: -6px;
     left: 20%;
     transform: rotate(45deg);
@@ -230,7 +248,7 @@ footer::after {
     position: absolute;
     width: 12px;
     height: 12px;
-    background-color: #3A3A70;
+    background-color: var(--color-primary);
     top: -6px;
     right: 20%;
     transform: rotate(45deg);
@@ -252,7 +270,7 @@ h3 {
         position: absolute;
         right: 0;
         top: 70px;
-        background-color: #fff;
+        background-color: var(--color-white);
         width: 100%;
         flex-direction: column;
         align-items: center;

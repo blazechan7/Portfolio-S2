@@ -1,8 +1,8 @@
 #about {
-    background: linear-gradient(to top, #CDC1FF, #FFCCEA); 
+    background: linear-gradient(to top, var(--color-purple-light), var(--color-pink-light)); 
     position: relative;
     overflow: hidden;
-    --section-color: #CDC1FF;
+    --section-color: var(--color-purple-light);
     padding-bottom: 60px;
     padding-top: 30px;
     margin-top: 0;
@@ -18,18 +18,21 @@
 }
 
 #about h2 {
-    color: #3A3A70; 
+    color: var(--color-primary); 
     margin-bottom: 30px;
     font-size: 2.2rem;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-    margin-top: -80px;
+    text-shadow: 3px 3px 0 var(--color-highlight-shadow);
+    margin-top: 0;
     padding-top: 0;
+    font-family: 'Press Start 2P', cursive;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 /* Pixel stars styling for about section */
 .about-pixel {
     position: absolute;
-    background-color: #3A3A70; 
+    background-color: var(--color-primary); 
     width: 15px;
     height: 15px;
 }
@@ -56,12 +59,13 @@
 
 .about-content {
     display: flex;
-    align-items: center;
-    gap: 30px;
+    align-items: flex-start;
+    gap: 80px;
     position: relative;
     z-index: 1;
     margin-bottom: 40px;
     padding-top: 0;
+    margin-top: 20px;
 }
 
 .about-text, .about-image {
@@ -70,35 +74,74 @@
 
 .about-text {
     flex: 1;
+    position: relative;
+    padding: 25px;
+    box-shadow: 0 0 0 3px var(--color-primary), 0 0 0 6px var(--color-blue-highlight-shadow);
+    background-color: var(--color-white-transparent);
+    backdrop-filter: blur(3px);
+    animation: scanlines 2s linear infinite;
+}
+
+@keyframes scanlines {
+    0% {
+        background-image: linear-gradient(to bottom, 
+            transparent 50%, 
+            var(--color-primary-transparent) 50%);
+        background-size: 100% 4px;
+    }
+    100% {
+        background-image: linear-gradient(to bottom, 
+            transparent 50%, 
+            var(--color-primary-transparent) 50%);
+        background-size: 100% 4px;
+        background-position: 0 4px;
+    }
 }
 
 .about-text h2 {
-    color: #3A3A70; 
+    color: var(--color-primary); 
     margin-bottom: 25px;
     font-size: 2.2rem;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .about-text p {
-    color: #3A3A70; 
+    color: var(--color-primary);
     margin-bottom: 30px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    font-weight: 500;
 }
 
 .about-text-divider {
     height: 4px;
-    background-color: #3A3A70;
     width: 100%;
     max-width: 300px;
-    margin: 25px 0;
+    margin: 25px 0 30px 0;
     position: relative;
+    background: var(--color-primary);
 }
 
+/* Interests title zonder strepen */
 .interests-title {
     font-family: 'Press Start 2P', cursive;
-    font-size: 1.2rem;
-    color: #3A3A70;
-    margin-top: 20px;
-    margin-bottom: 15px;
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    margin-top: 15px;
+    margin-bottom: 20px;
+    position: relative;
+    display: inline-block;
+    text-shadow: 3px 3px 0 var(--color-highlight-shadow);
+    letter-spacing: 2px;
+    line-height: 1.5;
+    text-transform: uppercase;
+}
+
+/* Verwijderen van de strepen voor en na de titel */
+.interests-title::before, 
+.interests-title::after {
+    display: none;
 }
 
 .interests-columns {
@@ -116,32 +159,222 @@
     margin: 0;
 }
 
-.interests-list li {
-    color: #3A3A70;
-    margin-bottom: 8px;
-    padding-left: 15px;
+/* Sparkle styling */
+.sparkle {
+    display: inline-block;
+    animation: sparkle-animation 1.5s infinite ease-in-out;
+    color: inherit;
     position: relative;
+    vertical-align: middle;
+}
+
+@keyframes sparkle-animation {
+    0% { 
+        transform: scale(1) rotate(0deg); 
+        opacity: 0.8;
+    }
+    50% { 
+        transform: scale(1.2) rotate(15deg); 
+        opacity: 1;
+    }
+    100% { 
+        transform: scale(1) rotate(0deg); 
+        opacity: 0.8;
+    }
+}
+
+/* Dropdown hover effect voor interests items */
+.interests-list li {
+    color: var(--color-primary);
+    margin-bottom: 20px;
+    padding-left: 20px;
+    position: relative;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.75rem;
+    line-height: 1.5;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 .interests-list li::before {
-    content: "•";
+    content: "▶";
     position: absolute;
     left: 0;
-    color: #3A3A70;
+    color: var(--color-blue-light);
+    font-size: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.interests-list li:hover {
+    transform: translateX(5px);
+    color: var(--color-blue-light);
+}
+
+.interests-list li:hover::before {
+    transform: scale(1.2) rotate(90deg);
+    color: var(--color-blue-light);
+}
+
+/* Dropdown content styling - vervangt de tooltip styling */
+.dropdown-content {
+    display: none;
+    position: relative;
+    margin-top: 10px;
+    width: 230px;
+    padding: 0;
+}
+
+.dropdown-content p {
+    background-color: var(--color-primary);
+    color: var(--color-cream);
+    padding: 10px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.7rem;
+    line-height: 1.5;
+    letter-spacing: normal;
+    box-shadow: 0 0 0 3px var(--color-blue-light);
+    border: 2px dashed var(--color-primary);
+    margin: 0;
+    font-weight: 500;
+}
+
+.interests-list li:hover .dropdown-content {
+    display: block;
+}
+
+/* Verwijderen van oude tooltip styling */
+.tooltip {
+    display: none;
+}
+
+.interests-list li:hover .tooltip {
+    display: none;
+}
+
+/* Responsive aanpassingen voor dropdowns */
+@media screen and (max-width: 768px) {
+    .dropdown-content {
+        width: 180px;
+    }
+    
+    .dropdown-content p {
+        font-size: 0.65rem;
+    }
+    
+    .interests-list li {
+        margin-bottom: 30px;
+    }
 }
 
 .about-image {
     max-width: 300px;
     aspect-ratio: 1/1;
-    border: 4px solid #FFF6E3; 
+    position: relative;
+    border: none;
+    filter: drop-shadow(5px 5px 0 var(--color-primary-shadow));
 }
 
+.about-image::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    right: -8px;
+    bottom: -8px;
+    background: transparent;
+    background-image: 
+        linear-gradient(45deg, var(--color-blue-light) 25%, transparent 25%),
+        linear-gradient(-45deg, var(--color-blue-light) 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, var(--color-blue-light) 75%),
+        linear-gradient(-45deg, transparent 75%, var(--color-blue-light) 75%);
+    background-size: 16px 16px;
+    background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
+    z-index: -1;
+    animation: pixelate 3s linear infinite alternate;
+}
+
+@keyframes pixelate {
+    0% {
+        background-size: 16px 16px;
+    }
+    100% {
+        background-size: 24px 24px;
+    }
+}
+
+/* Retro terminal cursor effect */
+.about-text p::after {
+    content: '';
+    display: none;
+    animation: none;
+}
+
+/* Interactieve pixelblokken die echt interessant eruit zien */
+.pixel-block {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-color: var(--color-blue-light);
+    z-index: 1;
+    transform: rotate(45deg);
+    opacity: 0.7;
+    animation: float-block 4s ease-in-out infinite;
+}
+
+.pixel-block:nth-child(odd) {
+    background-color: var(--color-primary);
+}
+
+@keyframes float-block {
+    0%, 100% { transform: rotate(45deg) translateY(0); }
+    50% { transform: rotate(45deg) translateY(-15px); }
+}
+
+/* Een aantal pixel blokken plaatsen */
+.about-content::before {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-color: var(--color-blue-light);
+    top: -20px;
+    left: 10%;
+    transform: rotate(45deg);
+    opacity: 0.7;
+    animation: float-block 4s ease-in-out infinite;
+}
+
+.about-content::after {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-color: var(--color-primary);
+    bottom: -20px;
+    right: 10%;
+    transform: rotate(45deg);
+    opacity: 0.7;
+    animation: float-block 4s ease-in-out infinite;
+    animation-delay: 1s;
+}
+
+/* Pixelart rand voor de afbeelding */
 .about-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 0; 
     box-shadow: none;
+    border: 8px solid var(--color-cream);
+    outline: 4px solid var(--color-primary);
+    image-rendering: pixelated;
+    transition: all 0.3s ease;
+}
+
+.about-image img:hover {
+    transform: scale(1.02);
+    outline-color: var(--color-blue-light);
 }
 
 /* Responsive Design */
@@ -149,6 +382,8 @@
     .about-content {
         flex-direction: column;
         text-align: center;
+        gap: 40px;
+        align-items: center;
     }
 
     .about-image {
@@ -157,11 +392,16 @@
     }
     
     .about-text-divider {
-        margin: 20px auto;
+        margin: 20px auto 30px auto;
     }
     
     .interests-columns {
         gap: 15px;
+    }
+
+    .interests-title::before,
+    .interests-title::after {
+        display: none;
     }
 }
 
@@ -254,20 +494,55 @@
     animation: about-twinkle 4.7s infinite ease-in-out;
 }
 
+/* Knipperende plus decoraties */
 .about-plus {
     position: absolute;
-    color: #3A3A70;
+    color: var(--color-primary);
     font-size: 30px;
     font-weight: bold;
     font-family: monospace;
+    animation: blink 2s ease-in-out infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+/* Eenvoudige decoratieve cirkelelementen */
+.about-decoration {
+    position: absolute;
+    z-index: 1;
+    opacity: 0.7;
+}
+
+/* Basisopmaak voor cirkels */
+.circle-1, .circle-2 {
+    border-radius: 50%;
+}
+
+.circle-1 {
+    width: 40px;
+    height: 40px;
+    background-color: var(--color-pink-light);
+    left: 15%;
+    top: 20%;
+}
+
+.circle-2 {
+    width: 30px;
+    height: 30px;
+    background-color: var(--color-blue-light);
+    right: 20%;
+    bottom: 30%;
 }
 
 .about-plus-1 {
-    top: 150px;
-    right: 250px;
+    top: 15%;
+    right: 25%;
 }
 
 .about-plus-2 {
-    bottom: 160px;
-    left: 180px;
-} 
+    bottom: 25%;
+    left: 20%;
+}

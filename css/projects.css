@@ -1,8 +1,8 @@
 #projects {
-    background: linear-gradient(175deg, #CDC1FF, #FFCCEA); 
+    background: linear-gradient(175deg, var(--color-purple-light), var(--color-pink-light)); 
     position: relative;
     overflow: hidden;
-    --section-color: #FFCCEA;
+    --section-color: var(--color-pink-light);
     padding-bottom: 70px;
     padding-top: 30px;
 }
@@ -13,7 +13,7 @@
 
 .project-pixel {
     position: absolute;
-    background-color: #3A3A70; 
+    background-color: var(--color-primary); 
     width: 15px;
     height: 15px;
 }
@@ -41,7 +41,7 @@
 .projects-tabs {
     display: flex;
     margin-bottom: 30px;
-    border-bottom: 2px solid #FFF6E3; 
+    border-bottom: 2px solid var(--color-cream); 
     position: relative;
     z-index: 1;
 }
@@ -52,7 +52,7 @@
     position: absolute;
     width: 12px;
     height: 12px;
-    background-color: #BFECFF;
+    background-color: var(--color-blue-light);
     top: -10px;
     left: 10%;
     transform: rotate(45deg);
@@ -65,7 +65,7 @@
     position: absolute;
     width: 12px;
     height: 12px;
-    background-color: #3A3A70;
+    background-color: var(--color-primary);
     bottom: -10px;
     right: 10%;
     transform: rotate(45deg);
@@ -83,11 +83,11 @@
     font-weight: 500;
     position: relative;
     font-family: 'Open Sans', sans-serif;
-    color: #3A3A70; 
+    color: var(--color-primary); 
 }
 
 .tab-button.active {
-    color: #3A3A70; 
+    color: var(--color-primary); 
     font-weight: 600;
 }
 
@@ -98,7 +98,7 @@
     left: 0;
     width: 100%;
     height: 3px;
-    background-color: #3A3A70; 
+    background-color: var(--color-primary); 
 }
 
 .tab-content {
@@ -109,8 +109,8 @@
 #info, #process {
     position: relative;
     padding: 25px;
-    box-shadow: 0 0 0 3px #3A3A70, 0 0 0 6px rgba(191, 236, 255, 0.5);
-    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 0 3px var(--color-primary), 0 0 0 6px var(--color-blue-highlight-shadow);
+    background-color: var(--color-white-transparent);
     backdrop-filter: blur(3px);
     animation: scanlines 2s linear infinite;
 }
@@ -119,13 +119,13 @@
     0% {
         background-image: linear-gradient(to bottom, 
             transparent 50%, 
-            rgba(58, 58, 112, 0.05) 50%);
+            var(--color-primary-transparent) 50%);
         background-size: 100% 4px;
     }
     100% {
         background-image: linear-gradient(to bottom, 
             transparent 50%, 
-            rgba(58, 58, 112, 0.05) 50%);
+            var(--color-primary-transparent) 50%);
         background-size: 100% 4px;
         background-position: 0 4px;
     }
@@ -148,8 +148,8 @@
 }
 
 .project-card {
-    background-color: white; 
-    border: 4px solid #3A3A70; 
+    background-color: var(--color-white); 
+    border: 4px solid var(--color-primary); 
     overflow: hidden;
     transition: transform 0.3s;
     position: relative;
@@ -164,7 +164,7 @@
     position: absolute;
     width: 12px;
     height: 12px;
-    background-color: #BFECFF;
+    background-color: var(--color-blue-light);
     top: -6px;
     right: -6px;
     transform: rotate(45deg);
@@ -178,7 +178,7 @@
     padding-bottom: 100%;
     position: relative;
     overflow: hidden;
-    border-bottom: 4px solid #3A3A70; 
+    border-bottom: 4px solid var(--color-primary); 
 }
 
 .project-card-image img {
@@ -200,14 +200,14 @@
     padding: 15px 15px 8px;
     font-family: 'Press Start 2P', cursive;
     font-size: 0.8rem;
-    color: #3A3A70; 
+    color: var(--color-primary); 
 }
 
 .project-card p {
     padding: 15px;
     font-family: 'Open Sans', sans-serif;
     font-weight: 500;
-    color: #3A3A70; 
+    color: var(--color-primary); 
 }
 
 .tab-pane p {
@@ -330,7 +330,7 @@
 
 .project-plus {
     position: absolute;
-    color: #3A3A70;
+    color: var(--color-primary);
     font-size: 30px;
     font-weight: bold;
     font-family: monospace;
@@ -348,7 +348,7 @@
 }
 
 #projects h2 {
-    color: #3A3A70; 
+    color: var(--color-primary); 
     margin-bottom: 30px;
     font-size: 2.2rem;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
