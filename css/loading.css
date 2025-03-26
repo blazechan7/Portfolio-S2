@@ -4,7 +4,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, var(--color-purple-light), var(--color-pink-light));
+    background: url('../img/bg3.png') center/cover no-repeat;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -26,7 +26,7 @@
 
 .loading-text {
     font-family: 'Press Start 2P', cursive;
-    color: var(--color-primary);
+    color: var(--color-cream);
     font-size: 1.8rem;
     margin-bottom: 20px;
     position: relative;
@@ -47,7 +47,7 @@
 .pixel-loader {
     width: 300px;
     height: 30px;
-    border: 5px solid var(--color-primary);
+    border: 5px solid var(--color-cream);
     position: relative;
     overflow: hidden;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -59,13 +59,7 @@
     left: 0;
     height: 100%;
     width: 0;
-    background: repeating-linear-gradient(
-        45deg,
-        var(--color-blue-light),
-        var(--color-blue-light) 10px,
-        var(--color-purple-light) 10px,
-        var(--color-purple-light) 20px
-    );
+    background: var(--color-blue-light);
     animation: fill-loader 3s linear forwards;
 }
 

@@ -27,6 +27,7 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
     color: var(--color-dark-gray);
+    font-weight: 500;
 }
 
 h1, h2, h3, .loading-text {
@@ -148,7 +149,7 @@ nav:hover, nav.visible {
 .nav-links a:hover .pixel-border-right,
 .nav-links a:hover .pixel-border-bottom,
 .nav-links a:hover .pixel-border-left {
-    background-color: var(--color-pink-light);
+    background-color: var(--color-blue-light);
 }
 
 .nav-links a:hover {

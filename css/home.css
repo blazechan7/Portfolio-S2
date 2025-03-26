@@ -162,7 +162,7 @@
 .home-content {
     display: flex;
     align-items: flex-start;
-    gap: 80px;
+    gap: 100px;
     width: 100%;
     position: relative;
 }

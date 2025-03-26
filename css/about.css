@@ -60,7 +60,7 @@
 .about-content {
     display: flex;
     align-items: flex-start;
-    gap: 80px;
+    gap: 100px;
     position: relative;
     z-index: 1;
     margin-bottom: 40px;
@@ -154,6 +154,7 @@
 }
 
 .interests-list {
+    font-size: 1.2em;
     list-style-type: none;
     padding-left: 0;
     margin: 0;
