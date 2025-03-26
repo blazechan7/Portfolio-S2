@@ -1,0 +1,258 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+    color: #333;
+}
+
+h1, h2, h3, .loading-text {
+    font-family: 'Press Start 2P', cursive;
+    line-height: 1.4;
+}
+
+.container {
+    width: 85%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 80px;
+    background-color: transparent;
+    box-shadow: none;
+    z-index: 100;
+    transition: all 0.5s ease;
+}
+
+nav.scrolled {
+    background-color: transparent;
+    transform: translateY(-100%);
+}
+
+nav:hover, nav.visible {
+    transform: translateY(0);
+    background-color: rgba(58, 58, 112, 0.7);
+    backdrop-filter: blur(5px);
+}
+
+.logo {
+    font-size: 16px;
+    font-family: 'Open Sans', sans-serif;
+    background-color: #EADBC8;
+    padding: 10px 15px;
+    border: 2px solid #FFF6E3;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 100px;
+}
+
+.nav-links li {
+    position: relative;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #FFF6E3;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 14px;
+    padding: 12px 20px;
+    display: inline-block;
+    position: relative;
+    background-color: transparent;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.nav-links a::before,
+.nav-links a::after,
+.nav-corner-1,
+.nav-corner-2,
+.nav-corner-3,
+.nav-corner-4 {
+    display: none;
+}
+
+/* Pixelart border met hoeken die wegvallen */
+.nav-links a .pixel-border-top,
+.nav-links a .pixel-border-right,
+.nav-links a .pixel-border-bottom,
+.nav-links a .pixel-border-left {
+    position: absolute;
+    background-color: #FFF6E3;
+}
+
+.nav-links a .pixel-border-top {
+    top: 0;
+    left: 4px;
+    right: 4px;
+    height: 2px;
+}
+
+.nav-links a .pixel-border-right {
+    top: 4px;
+    right: 0;
+    bottom: 4px;
+    width: 2px;
+}
+
+.nav-links a .pixel-border-bottom {
+    bottom: 0;
+    left: 4px;
+    right: 4px;
+    height: 2px;
+}
+
+.nav-links a .pixel-border-left {
+    top: 4px;
+    left: 0;
+    bottom: 4px;
+    width: 2px;
+}
+
+.nav-links a:hover .pixel-border-top,
+.nav-links a:hover .pixel-border-right,
+.nav-links a:hover .pixel-border-bottom,
+.nav-links a:hover .pixel-border-left {
+    background-color: #FFCCEA;
+}
+
+.nav-links a:hover {
+    color: #FFCCEA;
+    transform: translateY(-2px);
+}
+
+.burger {
+    display: none;
+    cursor: pointer;
+}
+
+.burger div {
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+    margin: 5px;
+    transition: all 0.3s ease;
+}
+
+.divider-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    overflow: visible;
+    z-index: 5;
+}
+
+.pixel-divider {
+    display: flex;
+    width: 100%;
+    height: 10px;
+}
+
+.pixel-divider-item {
+    width: 10px;
+    height: 10px;
+    background-color: #3A3A70; 
+}
+
+.pixel-divider-item:nth-child(even) {
+    background-color: transparent;
+}
+
+.section {
+    padding: 30px 0 60px;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+footer {
+    background-color: #767676;
+    color: #FFF6E3;
+    padding: 30px 0;
+    text-align: center;
+}
+
+h2 {
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+}
+
+h3 {
+    font-size: 1rem;
+    margin-bottom: 12px;
+}
+
+@media screen and (max-width: 768px) {
+    .nav-links {
+        position: absolute;
+        right: 0;
+        top: 70px;
+        background-color: #fff;
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        transform: translateX(100%);
+        transition: transform 0.5s ease-in;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        gap: 10px;
+    }
+    
+    .nav-links li {
+        margin: 15px 0;
+    }
+    
+    .burger {
+        display: block;
+    }
+    
+    .nav-active {
+        transform: translateX(0);
+    }
+    
+    .toggle .line1 {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    
+    .toggle .line2 {
+        opacity: 0;
+    }
+    
+    .toggle .line3 {
+        transform: rotate(45deg) translate(-5px, -6px);
+    }
+    
+    .section {
+        padding: 50px 0;
+        min-height: auto;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .tab-button {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+} 

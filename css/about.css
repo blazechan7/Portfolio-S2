@@ -1,0 +1,273 @@
+#about {
+    background: linear-gradient(to top, #CDC1FF, #FFCCEA); 
+    position: relative;
+    overflow: hidden;
+    --section-color: #CDC1FF;
+    padding-bottom: 60px;
+    padding-top: 30px;
+    margin-top: 0;
+}
+
+.section#about {
+    padding-top: 30px;
+}
+
+#about .container {
+    padding-top: 20px;
+    margin-top: 0;
+}
+
+#about h2 {
+    color: #3A3A70; 
+    margin-bottom: 30px;
+    font-size: 2.2rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    margin-top: -80px;
+    padding-top: 0;
+}
+
+/* Pixel stars styling for about section */
+.about-pixel {
+    position: absolute;
+    background-color: #3A3A70; 
+    width: 15px;
+    height: 15px;
+}
+
+.about-pixel-1 {
+    top: 120px;
+    right: 150px;
+}
+
+.about-pixel-2 {
+    bottom: 100px;
+    left: 200px;
+}
+
+.about-pixel-3 {
+    top: 80px;
+    left: 100px;
+}
+
+.about-pixel-4 {
+    bottom: 180px;
+    right: 80px;
+}
+
+.about-content {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 40px;
+    padding-top: 0;
+}
+
+.about-text, .about-image {
+    flex: 1;
+}
+
+.about-text {
+    flex: 1;
+}
+
+.about-text h2 {
+    color: #3A3A70; 
+    margin-bottom: 25px;
+    font-size: 2.2rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.about-text p {
+    color: #3A3A70; 
+    margin-bottom: 30px;
+}
+
+.about-text-divider {
+    height: 4px;
+    background-color: #3A3A70;
+    width: 100%;
+    max-width: 300px;
+    margin: 25px 0;
+    position: relative;
+}
+
+.interests-title {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.2rem;
+    color: #3A3A70;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+.interests-columns {
+    display: flex;
+    gap: 30px;
+}
+
+.interests-column {
+    flex: 1;
+}
+
+.interests-list {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.interests-list li {
+    color: #3A3A70;
+    margin-bottom: 8px;
+    padding-left: 15px;
+    position: relative;
+}
+
+.interests-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #3A3A70;
+}
+
+.about-image {
+    max-width: 300px;
+    aspect-ratio: 1/1;
+    border: 4px solid #FFF6E3; 
+}
+
+.about-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0; 
+    box-shadow: none;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .about-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about-image {
+        margin: 30px auto 0;
+        max-width: 250px;
+    }
+    
+    .about-text-divider {
+        margin: 20px auto;
+    }
+    
+    .interests-columns {
+        gap: 15px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .about-image {
+        max-width: 200px;
+    }
+}
+
+/* Pixel stars styling for about section */
+.about-star {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
+}
+
+/* Larger stars */
+.about-star-large {
+    position: absolute;
+    width: 7px;
+    height: 7px;
+}
+
+/* Special star classes that create a + shape using :before and :after */
+.about-star-large::before,
+.about-star-large::after {
+    content: '';
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+/* Horizontal line */
+.about-star-large::before {
+    width: 7px;
+    height: 3px;
+    top: 2px;
+    left: 0;
+}
+
+/* Vertical line */
+.about-star-large::after {
+    width: 3px;
+    height: 7px;
+    top: 0;
+    left: 2px;
+}
+
+/* Positions of the stars */
+.about-star-1 { top: 60px; left: 120px; }
+.about-star-2 { top: 140px; right: 180px; }
+.about-star-3 { top: 220px; left: 60px; }
+.about-star-4 { bottom: 180px; right: 120px; }
+.about-star-5 { bottom: 220px; left: 220px; }
+.about-star-6 { top: 90px; right: 220px; }
+.about-star-7 { top: 160px; right: 280px; }
+.about-star-8 { bottom: 120px; left: 130px; }
+
+/* Larger stars position */
+.about-star-large-1 { top: 120px; left: 220px; }
+.about-star-large-2 { bottom: 140px; right: 200px; }
+.about-star-large-3 { top: 180px; right: 120px; }
+
+/* Add twinkling animation for stars */
+@keyframes about-twinkle {
+    0% { opacity: 0.3; }
+    50% { opacity: 1; }
+    100% { opacity: 0.3; }
+}
+
+/* Different animation durations for different stars */
+.about-star-1, .about-star-5, .about-star-8 {
+    animation: about-twinkle 2.2s infinite ease-in-out;
+}
+
+.about-star-3, .about-star-6 {
+    animation: about-twinkle 3.3s infinite ease-in-out;
+}
+
+.about-star-2, .about-star-7 {
+    animation: about-twinkle 4.2s infinite ease-in-out;
+}
+
+.about-star-large-1 {
+    animation: about-twinkle 3.7s infinite ease-in-out;
+}
+
+.about-star-large-3 {
+    animation: about-twinkle 4.7s infinite ease-in-out;
+}
+
+.about-plus {
+    position: absolute;
+    color: #3A3A70;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: monospace;
+}
+
+.about-plus-1 {
+    top: 150px;
+    right: 250px;
+}
+
+.about-plus-2 {
+    bottom: 160px;
+    left: 180px;
+} 

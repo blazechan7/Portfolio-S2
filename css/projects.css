@@ -1,0 +1,258 @@
+#projects {
+    background: linear-gradient(175deg, #CDC1FF, #FFCCEA); 
+    position: relative;
+    overflow: hidden;
+    --section-color: #FFCCEA;
+    padding-bottom: 70px;
+    padding-top: 30px;
+}
+
+#projects .container {
+    padding-top: 20px;
+}
+
+.project-pixel {
+    position: absolute;
+    background-color: #3A3A70; 
+    width: 15px;
+    height: 15px;
+}
+
+.project-pixel-1 {
+    top: 80px;
+    right: 120px;
+}
+
+.project-pixel-2 {
+    bottom: 140px;
+    left: 180px;
+}
+
+.project-pixel-3 {
+    top: 200px;
+    left: 100px;
+}
+
+.project-pixel-4 {
+    bottom: 100px;
+    right: 200px;
+}
+
+.projects-tabs {
+    display: flex;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #FFF6E3; 
+    position: relative;
+    z-index: 1;
+}
+
+.tab-button {
+    padding: 10px 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    position: relative;
+    font-family: 'Open Sans', sans-serif;
+    color: #3A3A70; 
+}
+
+.tab-button.active {
+    color: #3A3A70; 
+    font-weight: bold;
+}
+
+.tab-button.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #3A3A70; 
+}
+
+.tab-pane {
+    display: none;
+}
+
+.tab-pane.active {
+    display: block;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.project-card {
+    background-color: white; 
+    border: 4px solid #3A3A70; 
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+}
+
+.project-card-image {
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 4px solid #3A3A70; 
+}
+
+.project-card-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.project-card h3 {
+    padding: 15px 15px 8px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.8rem;
+    color: #3A3A70; 
+}
+
+.project-card p {
+    padding: 0 15px 15px;
+    font-size: 0.9rem;
+    color: #3A3A70; 
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .project-card-image {
+        max-width: 300px;
+        margin: 0 auto;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .project-card-image {
+        max-width: 250px;
+    }
+}
+
+/* Pixel stars styling for projects section */
+.project-star {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
+}
+
+/* Larger stars */
+.project-star-large {
+    position: absolute;
+    width: 7px;
+    height: 7px;
+}
+
+/* Special star classes that create a + shape using :before and :after */
+.project-star-large::before,
+.project-star-large::after {
+    content: '';
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+/* Horizontal line */
+.project-star-large::before {
+    width: 7px;
+    height: 3px;
+    top: 2px;
+    left: 0;
+}
+
+/* Vertical line */
+.project-star-large::after {
+    width: 3px;
+    height: 7px;
+    top: 0;
+    left: 2px;
+}
+
+/* Positions of the stars */
+.project-star-1 { top: 70px; left: 90px; }
+.project-star-2 { top: 130px; right: 170px; }
+.project-star-3 { top: 210px; left: 70px; }
+.project-star-4 { bottom: 170px; right: 110px; }
+.project-star-5 { bottom: 210px; left: 210px; }
+.project-star-6 { top: 100px; right: 210px; }
+.project-star-7 { top: 170px; right: 270px; }
+.project-star-8 { bottom: 110px; left: 140px; }
+
+/* Larger stars position */
+.project-star-large-1 { top: 110px; left: 210px; }
+.project-star-large-2 { bottom: 130px; right: 190px; }
+.project-star-large-3 { top: 170px; right: 130px; }
+
+/* Add twinkling animation for stars */
+@keyframes project-twinkle {
+    0% { opacity: 0.3; }
+    50% { opacity: 1; }
+    100% { opacity: 0.3; }
+}
+
+/* Different animation durations for different stars */
+.project-star-1, .project-star-5, .project-star-8 {
+    animation: project-twinkle 2.5s infinite ease-in-out;
+}
+
+.project-star-3, .project-star-6 {
+    animation: project-twinkle 3.5s infinite ease-in-out;
+}
+
+.project-star-2, .project-star-7 {
+    animation: project-twinkle 4.5s infinite ease-in-out;
+}
+
+.project-star-large-1 {
+    animation: project-twinkle 3.9s infinite ease-in-out;
+}
+
+.project-star-large-3 {
+    animation: project-twinkle 4.9s infinite ease-in-out;
+}
+
+.project-plus {
+    position: absolute;
+    color: #3A3A70;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: monospace;
+}
+
+.project-plus-1 {
+    top: 140px;
+    right: 230px;
+}
+
+.project-plus-2 {
+    bottom: 150px;
+    left: 190px;
+}
+
+#projects h2 {
+    color: #3A3A70; 
+    margin-bottom: 30px;
+    font-size: 2.2rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+} 
