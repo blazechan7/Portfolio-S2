@@ -1,11 +1,20 @@
 #about {
-    background: linear-gradient(to top, var(--color-purple-light), var(--color-pink-light)); 
+    background: linear-gradient(
+        135deg,
+        var(--color-purple-light) 0%,
+        var(--color-purple-gradient-1) 25%,
+        var(--color-purple-light) 50%,
+        var(--color-purple-gradient-2) 75%,
+        var(--color-purple-light) 85%,
+        var(--color-pink-light) 100%
+    );
     position: relative;
     overflow: hidden;
-    --section-color: var(--color-purple-light);
+    --section-color: #CDC1FF;
     padding-bottom: 60px;
     padding-top: 30px;
     margin-top: 0;
+    min-height: calc(100vh - 40px);
 }
 
 .section#about {
@@ -13,15 +22,15 @@
 }
 
 #about .container {
-    padding-top: 20px;
+    padding-top: 60px;
     margin-top: 0;
 }
 
 #about h2 {
-    color: var(--color-primary); 
+    color: #3A3A70; 
     margin-bottom: 30px;
     font-size: 2.2rem;
-    text-shadow: 3px 3px 0 var(--color-highlight-shadow);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
     margin-top: 0;
     padding-top: 0;
     font-family: 'Press Start 2P', cursive;
@@ -63,7 +72,7 @@
     gap: 100px;
     position: relative;
     z-index: 1;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     padding-top: 0;
     margin-top: 20px;
 }
@@ -126,16 +135,10 @@
 /* Interests title zonder strepen */
 .interests-title {
     font-family: 'Press Start 2P', cursive;
-    font-size: 1.5rem;
-    color: var(--color-primary);
-    margin-top: 15px;
-    margin-bottom: 20px;
-    position: relative;
-    display: inline-block;
-    text-shadow: 3px 3px 0 var(--color-highlight-shadow);
-    letter-spacing: 2px;
-    line-height: 1.5;
-    text-transform: uppercase;
+    font-size: 1.2rem;
+    color: #3A3A70;
+    margin-top: 20px;
+    margin-bottom: 15px;
 }
 
 /* Verwijderen van de strepen voor en na de titel */
@@ -184,40 +187,22 @@
     }
 }
 
-/* Dropdown hover effect voor interests items */
+/* Interests list styling */
 .interests-list li {
-    color: var(--color-primary);
-    margin-bottom: 20px;
-    padding-left: 20px;
+    color: #3A3A70;
+    margin-bottom: 5px;
+    padding-left: 15px;
     position: relative;
-    font-family: 'Press Start 2P', cursive;
-    font-size: 0.75rem;
-    line-height: 1.5;
-    letter-spacing: 1px;
-    transition: all 0.3s ease;
-    cursor: pointer;
 }
 
 .interests-list li::before {
-    content: "▶";
+    content: "•";
     position: absolute;
     left: 0;
-    color: var(--color-blue-light);
-    font-size: 0.5rem;
-    transition: transform 0.3s ease;
+    color: #3A3A70;
 }
 
-.interests-list li:hover {
-    transform: translateX(5px);
-    color: var(--color-blue-light);
-}
-
-.interests-list li:hover::before {
-    transform: scale(1.2) rotate(90deg);
-    color: var(--color-blue-light);
-}
-
-/* Dropdown content styling - vervangt de tooltip styling */
+/* Dropdown hover effect voor interests items */
 .dropdown-content {
     display: none;
     position: relative;
@@ -269,39 +254,21 @@
 }
 
 .about-image {
-    max-width: 300px;
-    aspect-ratio: 1/1;
+    width: 300px;
+    height: 300px;
     position: relative;
+    overflow: hidden;
     border: none;
-    filter: drop-shadow(5px 5px 0 var(--color-primary-shadow));
+    box-shadow: 0 0 0 3px var(--color-primary), 0 0 0 6px var(--color-blue-highlight-shadow);
+    background-color: var(--color-white-transparent);
 }
 
-.about-image::before {
-    content: '';
-    position: absolute;
-    top: -8px;
-    left: -8px;
-    right: -8px;
-    bottom: -8px;
-    background: transparent;
-    background-image: 
-        linear-gradient(45deg, var(--color-blue-light) 25%, transparent 25%),
-        linear-gradient(-45deg, var(--color-blue-light) 25%, transparent 25%),
-        linear-gradient(45deg, transparent 75%, var(--color-blue-light) 75%),
-        linear-gradient(-45deg, transparent 75%, var(--color-blue-light) 75%);
-    background-size: 16px 16px;
-    background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
-    z-index: -1;
-    animation: pixelate 3s linear infinite alternate;
-}
-
-@keyframes pixelate {
-    0% {
-        background-size: 16px 16px;
-    }
-    100% {
-        background-size: 24px 24px;
-    }
+.about-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    image-rendering: pixelated;
+    border: none;
 }
 
 /* Retro terminal cursor effect */
@@ -365,12 +332,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 0; 
-    box-shadow: none;
-    border: 8px solid var(--color-cream);
-    outline: 4px solid var(--color-primary);
     image-rendering: pixelated;
-    transition: all 0.3s ease;
 }
 
 .about-image img:hover {
@@ -546,4 +508,104 @@
 .about-plus-2 {
     bottom: 25%;
     left: 20%;
+}
+
+/* Divider container aanpassing */
+#about .divider-container {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    width: 100%;
+}
+
+/* Scroll arrows styling */
+#about .scroll-arrows-container {
+    position: absolute;
+    bottom: 60px;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 10;
+}
+
+#about .scroll-text {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.8rem;
+    color: #3A3A70;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.8);
+    letter-spacing: 1px;
+}
+
+#about .pixel-arrow {
+    width: 30px;
+    height: 15px;
+    position: relative;
+    margin-bottom: 6px;
+    animation: bounce 2s infinite ease-in-out;
+}
+
+#about .pixel-arrow:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+#about .pixel-arrow:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+#about .pixel-arrow::before,
+#about .pixel-arrow::after {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 3px;
+    background-color: #3A3A70;
+}
+
+#about .pixel-arrow::before {
+    right: 50%;
+    transform: rotate(45deg);
+    transform-origin: right;
+}
+
+#about .pixel-arrow::after {
+    left: 50%;
+    transform: rotate(-45deg);
+    transform-origin: left;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(5px);
+    }
+}
+
+/* Responsive aanpassingen */
+@media screen and (max-width: 768px) {
+    #about .scroll-arrows-container {
+        bottom: 90px;
+    }
+    
+    #about .scroll-text {
+        font-size: 0.7rem;
+        margin-bottom: 15px;
+    }
+    
+    #about .pixel-arrow {
+        width: 25px;
+        height: 12px;
+        margin-bottom: 5px;
+    }
+    
+    #about .pixel-arrow::before,
+    #about .pixel-arrow::after {
+        width: 12px;
+        height: 2px;
+    }
 }

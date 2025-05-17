@@ -1,19 +1,19 @@
-// Generate pixel divider elements and initialize website functionality
+// Maak vakjes aan en start de functies van de website
 document.addEventListener('DOMContentLoaded', () => {
     const pixelDividers = document.querySelectorAll('.pixel-divider');
     
     if (pixelDividers.length > 0) {
-        // Calculate how many pixels we need for the screen width
+        // Kijk hoe breed het scherm is
         const screenWidth = window.innerWidth;
-        const pixelSize = 10; // Each pixel is 10px wide
-        const numberOfPixels = Math.ceil(screenWidth / pixelSize) + 1; // +1 to be sure
+        const pixelSize = 10; // elk pixel is 10px wijd
+        const numberOfPixels = Math.ceil(screenWidth / pixelSize) + 1; 
         
-        // Loop through all pixel dividers and create elements
+        // Loop door alle pixel-rijen en maak vakjes aan
         pixelDividers.forEach(pixelDivider => {
-            // Clear any existing pixel divider items first
+            // Maak de rij eerst leeg
             pixelDivider.innerHTML = '';
             
-            // Create the pixel elements for each divider
+            // Maak een nieuw vakje voor elk stukje
             for (let i = 0; i < numberOfPixels; i++) {
                 const pixelItem = document.createElement('div');
                 pixelItem.classList.add('pixel-divider-item');
@@ -22,164 +22,177 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Loading Screen - wait for full animation (3s) before disappearing
+    // Laadscherm: Wacht tot de animatie klaar is (3s) voordat het verdwijnt
     setTimeout(() => {
         const loadingScreen = document.getElementById('loading-screen');
         if (loadingScreen) {
-            loadingScreen.style.opacity = '0';
+            loadingScreen.style.opacity = '0'; // maak langzaam onzichtbaar
             setTimeout(() => {
-                loadingScreen.style.display = 'none';
-            }, 500);
+                loadingScreen.style.display = 'none'; // helemaal verbergen
+            }, 500); // wacht nog een halve seconde
         }
-    }, 3100); // Wait slightly longer than the animation (3s) to ensure it's fully loaded
+    }, 3100); // wacht iets langer dan de animatie (3 seconden)
 
-    // Mobile Navigation
-    const burger = document.querySelector('.burger');
+    // Navigatie voor mobiel
     const nav = document.querySelector('.nav-links');
     const navLinks = document.querySelectorAll('.nav-links li');
 
-    burger.addEventListener('click', () => {
-        // Toggle Nav
-        nav.classList.toggle('nav-active');
-        
-        // Animate Links
-        navLinks.forEach((link, index) => {
-            if (link.style.animation) {
-                link.style.animation = '';
-            } else {
-                link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
-            }
-        });
-        
-        // Burger Animation
-        burger.classList.toggle('toggle');
-    });
-
-    // Smooth Scrolling for menu links
+    // Soepel scrollen als je op een menu link klikt
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
             
-            // Close mobile menu if it's open
+            // Sluit het menu op mobiel als het open is
             if (nav.classList.contains('nav-active')) {
                 nav.classList.remove('nav-active');
-                burger.classList.remove('toggle');
                 
                 navLinks.forEach(link => {
-                    link.style.animation = '';
+                    link.style.animation = ''; // stop de animatie van de menu items
                 });
             }
             
-            const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
+            const targetId = this.getAttribute('href'); // haal de naam op van waar je naartoe moet scrollen
+            const targetElement = document.querySelector(targetId); // zoek het element dat bij die naam hoort
             
             window.scrollTo({
-                top: targetElement.offsetTop - 70, // Offset for the navigation bar
+                top: targetElement.offsetTop - 70, // scroll naar dat element, 70 pixels omhoog om ruimte te laten voor het menu
                 behavior: 'smooth'
             });
         });
     });
 
-    // Tab functionality for projects
-    // Verwijderd omdat er nu maar één tab is (overview)
-
-    // Scroll Reveal Animation
+    // Scroll reveal animatie
     function revealOnScroll() {
         const sections = document.querySelectorAll('.section');
         
         sections.forEach(section => {
-            const sectionTop = section.getBoundingClientRect().top;
-            const windowHeight = window.innerHeight;
-            const revealPoint = 150;
+            const sectionTop = section.getBoundingClientRect().top; // kijk hoe ver het onderdeel van boven is
+            const windowHeight = window.innerHeight; // hoogte van het scherm
+            const revealPoint = 150; // wanneer het 150 pixels van onderen is, mag het zichtbaar worden
             
             if (sectionTop < windowHeight - revealPoint) {
-                section.classList.add('active');
+                section.classList.add('active'); // voeg 'active' toe zodat de animatie start
             }
         });
     }
 
+    // Als je scrollt, laat dan onderdelen zien
     window.addEventListener('scroll', revealOnScroll);
 
-    // Add active section class to the navigation menu during scrolling
+    // Als je scrollt, maak het menu actiever (laat zien waar je bent)
     window.addEventListener('scroll', () => {
         const sections = document.querySelectorAll('.section');
         const navLinks = document.querySelectorAll('.nav-links a');
         
-        let current = '';
+        let current = ''; // hier slaan we op waar we nu zijn
         
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
             const sectionHeight = section.clientHeight;
             
+            // Als we voorbij het onderdeel zijn (100px erboven), dan is dit het huidige onderdeel
             if (pageYOffset >= (sectionTop - 100)) {
                 current = section.getAttribute('id');
             }
         });
-        
+
+        // Verwijder eerst de actieve stijl bij alle links
         navLinks.forEach(link => {
             link.classList.remove('active');
+
+            // Voeg 'active' toe aan de link die past bij waar we zijn
             if (link.getAttribute('href') === `#${current}`) {
                 link.classList.add('active');
             }
         });
     });
 
-    // Navbar scroll behavior
+    // Navbar scroll 
     const navbar = document.querySelector('nav');
     let lastScrollY = window.scrollY;
-    const scrollThreshold = 100; // Pixels to scroll before hiding navbar
+    const scrollThreshold = 100; // aantal pixels die je moet scrollen voor de navbar verdwijnt
+    
+    // Pijltjes om naar beneden te scrollen
+    const scrollArrows = document.querySelectorAll('.scroll-arrows-container');
+    if (scrollArrows.length > 0) {
+        scrollArrows.forEach(arrows => {
+            // Als er op een pijltje geklikt wordt
+            arrows.addEventListener('click', () => {
+                // Bepaal de volgende sectie op basis van de huidige sectie
+                const currentSection = arrows.closest('.section');
+                let targetSection;
+                
+                if (currentSection.id === 'home') {
+                    targetSection = document.querySelector('#about');
+                } else if (currentSection.id === 'about') {
+                    targetSection = document.querySelector('#projects');
+                }
+                
+                if (targetSection) {
+                    window.scrollTo({
+                        top: targetSection.offsetTop - 20, // Verlaagd van 70 naar 20 voor meer scroll
+                        behavior: 'smooth'
+                    });
+                }
+            });
+            
+            arrows.style.cursor = 'pointer';
+        });
+    }
     
     // Add scroll event listener
     window.addEventListener('scroll', () => {
         const currentScrollY = window.scrollY;
         
-        // Check if user is scrolling down and past threshold
+        // Als je naar beneden scrolt en voorbij het drempelpunt bent
         if (currentScrollY > lastScrollY && currentScrollY > scrollThreshold) {
+            // Verberg de navbar
             navbar.classList.add('scrolled');
             navbar.classList.remove('visible');
         } else {
-            // User is scrolling up or at the top
+            // Je scrolt omhoog of bent bovenaan
             navbar.classList.remove('scrolled');
             if (currentScrollY > scrollThreshold) {
+                // Laat de navbar zien (maar alleen als je niet helemaal bovenaan bent)
                 navbar.classList.add('visible');
             } else {
-                // User is at the top of the page, always show navbar
+                // Helemaal bovenaan? Laat navbar altijd zien
                 navbar.classList.add('visible');
             }
         }
         
-        lastScrollY = currentScrollY;
+        lastScrollY = currentScrollY; // sla de huidige scrollpositie op
     });
     
-    // Make the navbar visible by default when the page loads
+    // Maak de navbar zichtbaar zodra de pagina is geladen
     window.addEventListener('load', () => {
         navbar.classList.add('visible');
         navbar.classList.remove('scrolled');
     });
 
-    // Make sure navbar is visible once loading screen is removed
+    // Maak de navbar zichtbaar zodra de laadscherm is verdwenen
     setTimeout(() => {
         navbar.classList.add('visible');
         navbar.classList.remove('scrolled');
-    }, 3200); // Slightly longer than the loading screen timeout
+    }, 3200); 
 
-    // Create a hover detection zone at the top of the page
+    // Maak een hover-zone bovenaan de pagina
     const hoverZone = document.createElement('div');
-    hoverZone.style.position = 'fixed';
-    hoverZone.style.top = '0';
+    hoverZone.style.position = 'fixed'; // Zet het vast bovenaan de pagina
+    hoverZone.style.top = '0'; 
     hoverZone.style.left = '0';
     hoverZone.style.width = '100%';
     hoverZone.style.height = '20px';
     hoverZone.style.zIndex = '99';
     document.body.appendChild(hoverZone);
     
-    // Show navbar when hovering at the top
+    // Maak de navbar zichtbaar als je met de muis bovenaan de pagina komt
     hoverZone.addEventListener('mouseenter', () => {
         navbar.classList.add('visible');
         navbar.classList.remove('scrolled');
     });
 
-    // Project details modal functionality
+    // Functionaliteit voor het projectdetails modal
     const projectCards = document.querySelectorAll('.project-card');
     const projectDetailsModal = document.getElementById('project-details-modal');
     const projectDetailsClose = document.querySelector('.project-details-close');
@@ -187,7 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const projectDetailsPanes = document.querySelectorAll('.project-details-pane');
     const projectDetailsTitle = document.querySelector('.project-details-title');
 
-    // Project data - hier kun je de echte data voor elk project toevoegen
+    // Project data 
     const projectsData = {
         "1": {
             "title": "Project 1",
@@ -224,7 +237,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Open project details modal when clicking on a project card
+    // Open project details modal 
     projectCards.forEach(card => {
         const viewButton = card.querySelector('.view-project-btn');
         
@@ -253,17 +266,17 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Show modal
             projectDetailsModal.style.display = 'flex';
-            document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+            document.body.style.overflow = 'hidden'; // Voorkomt scrollen als het open is
         });
     });
 
-    // Close project details modal
+    // Sluit het projectdetails modal
     projectDetailsClose.addEventListener('click', () => {
         projectDetailsModal.style.display = 'none';
-        document.body.style.overflow = ''; // Restore scrolling
+        document.body.style.overflow = ''; // herstel scrolling
     });
 
-    // Close modal when clicking outside of content
+    // Sluit het modaal wanneer je buiten de inhoud klikt
     projectDetailsModal.addEventListener('click', (e) => {
         if (e.target === projectDetailsModal) {
             projectDetailsModal.style.display = 'none';
@@ -274,16 +287,56 @@ document.addEventListener('DOMContentLoaded', () => {
     // Project details tab functionality
     projectDetailsTabs.forEach(tab => {
         tab.addEventListener('click', () => {
-            // Remove active class from all tabs and panes
+             // Verwijder de 'active' klasse van alle tabs en bijbehorende inhoud
             projectDetailsTabs.forEach(t => t.classList.remove('active'));
             projectDetailsPanes.forEach(p => p.classList.remove('active'));
             
-            // Add active class to current tab
             tab.classList.add('active');
-            
-            // Show corresponding content
+                  
             const tabId = tab.getAttribute('data-tab');
             document.getElementById(tabId).classList.add('active');
         });
+    });
+
+    // Evidence modal functionality
+    const evidenceModal = document.getElementById('evidence-modal');
+    const evidenceButtons = document.querySelectorAll('.view-evidence-btn');
+    const evidenceClose = document.querySelector('.evidence-close');
+    const evidenceSections = document.querySelectorAll('.evidence-section');
+
+    // Open evidence modal
+    evidenceButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const outcomeId = button.getAttribute('data-outcome');
+            
+            // Hide all sections first
+            evidenceSections.forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show the selected section
+            const selectedSection = document.querySelector(`.evidence-section[data-outcome="${outcomeId}"]`);
+            if (selectedSection) {
+                selectedSection.classList.add('active');
+            }
+            
+            // Show modal
+            evidenceModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        });
+    });
+
+    // Close evidence modal
+    evidenceClose.addEventListener('click', () => {
+        evidenceModal.style.display = 'none';
+        document.body.style.overflow = '';
+    });
+
+    // Close modal when clicking outside
+    evidenceModal.addEventListener('click', (e) => {
+        if (e.target === evidenceModal) {
+            evidenceModal.style.display = 'none';
+            document.body.style.overflow = '';
+        }
     });
 });
