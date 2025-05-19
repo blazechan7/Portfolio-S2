@@ -153,21 +153,7 @@ nav:hover, nav.visible {
 }
 
 .nav-links a:hover {
-    color: var(--color-blue-light);
-    transform: translateY(-2px);
-}
-
-.burger {
-    display: none;
-    cursor: pointer;
-}
-
-.burger div {
-    width: 25px;
-    height: 3px;
-    background-color: var(--color-dark-gray);
-    margin: 5px;
-    transition: all 0.3s ease;
+    color: var(--color-primary);
 }
 
 .divider-container {
@@ -186,7 +172,8 @@ nav:hover, nav.visible {
 .pixel-divider {
     display: flex;
     width: 100%;
-    height: 10px;
+    height: 20px;
+    overflow: hidden;
 }
 
 .pixel-divider-item {
@@ -200,10 +187,8 @@ nav:hover, nav.visible {
 }
 
 .section {
-    padding: 30px 0 60px;
-    min-height: 80vh;
-    display: flex;
-    align-items: center;
+    padding: 80px 0 50px;
+    min-height: 100vh;
     position: relative;
 }
 
@@ -285,24 +270,8 @@ h3 {
         margin: 15px 0;
     }
     
-    .burger {
-        display: block;
-    }
-    
     .nav-active {
         transform: translateX(0);
-    }
-    
-    .toggle .line1 {
-        transform: rotate(-45deg) translate(-5px, 6px);
-    }
-    
-    .toggle .line2 {
-        opacity: 0;
-    }
-    
-    .toggle .line3 {
-        transform: rotate(45deg) translate(-5px, -6px);
     }
     
     .section {
