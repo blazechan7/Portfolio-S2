@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 if (targetSection) {
                     window.scrollTo({
-                        top: targetSection.offsetTop - 70,
+                        top: targetSection.offsetTop - 20, // Verlaagd van 70 naar 20 voor meer scroll
                         behavior: 'smooth'
                     });
                 }
@@ -296,5 +296,47 @@ document.addEventListener('DOMContentLoaded', () => {
             const tabId = tab.getAttribute('data-tab');
             document.getElementById(tabId).classList.add('active');
         });
+    });
+
+    // Evidence modal functionality
+    const evidenceModal = document.getElementById('evidence-modal');
+    const evidenceButtons = document.querySelectorAll('.view-evidence-btn');
+    const evidenceClose = document.querySelector('.evidence-close');
+    const evidenceSections = document.querySelectorAll('.evidence-section');
+
+    // Open evidence modal
+    evidenceButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const outcomeId = button.getAttribute('data-outcome');
+            
+            // Hide all sections first
+            evidenceSections.forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show the selected section
+            const selectedSection = document.querySelector(`.evidence-section[data-outcome="${outcomeId}"]`);
+            if (selectedSection) {
+                selectedSection.classList.add('active');
+            }
+            
+            // Show modal
+            evidenceModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        });
+    });
+
+    // Close evidence modal
+    evidenceClose.addEventListener('click', () => {
+        evidenceModal.style.display = 'none';
+        document.body.style.overflow = '';
+    });
+
+    // Close modal when clicking outside
+    evidenceModal.addEventListener('click', (e) => {
+        if (e.target === evidenceModal) {
+            evidenceModal.style.display = 'none';
+            document.body.style.overflow = '';
+        }
     });
 });

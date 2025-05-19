@@ -1,12 +1,20 @@
 #about {
-    background: linear-gradient(to top, #CDC1FF, #FFCCEA); 
+    background: linear-gradient(
+        135deg,
+        var(--color-purple-light) 0%,
+        var(--color-purple-gradient-1) 25%,
+        var(--color-purple-light) 50%,
+        var(--color-purple-gradient-2) 75%,
+        var(--color-purple-light) 85%,
+        var(--color-pink-light) 100%
+    );
     position: relative;
     overflow: hidden;
     --section-color: #CDC1FF;
     padding-bottom: 60px;
     padding-top: 30px;
     margin-top: 0;
-    min-height: 100vh;
+    min-height: calc(100vh - 40px);
 }
 
 .section#about {
@@ -502,19 +510,102 @@
     left: 20%;
 }
 
-/* Verplaats de divider container naar boven om ruimte te maken voor scroll arrows */
+/* Divider container aanpassing */
 #about .divider-container {
-    bottom: 80px;
-}
-
-/* Positioneer de scroll arrows vlak onder de divider */
-#about .scroll-arrows-container {
     position: absolute;
     bottom: 20px;
+    left: 0;
+    right: 0;
+    width: 100%;
+}
+
+/* Scroll arrows styling */
+#about .scroll-arrows-container {
+    position: absolute;
+    bottom: 60px;
     left: 0;
     right: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     z-index: 10;
+}
+
+#about .scroll-text {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.8rem;
+    color: #3A3A70;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.8);
+    letter-spacing: 1px;
+}
+
+#about .pixel-arrow {
+    width: 30px;
+    height: 15px;
+    position: relative;
+    margin-bottom: 6px;
+    animation: bounce 2s infinite ease-in-out;
+}
+
+#about .pixel-arrow:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+#about .pixel-arrow:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+#about .pixel-arrow::before,
+#about .pixel-arrow::after {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 3px;
+    background-color: #3A3A70;
+}
+
+#about .pixel-arrow::before {
+    right: 50%;
+    transform: rotate(45deg);
+    transform-origin: right;
+}
+
+#about .pixel-arrow::after {
+    left: 50%;
+    transform: rotate(-45deg);
+    transform-origin: left;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(5px);
+    }
+}
+
+/* Responsive aanpassingen */
+@media screen and (max-width: 768px) {
+    #about .scroll-arrows-container {
+        bottom: 90px;
+    }
+    
+    #about .scroll-text {
+        font-size: 0.7rem;
+        margin-bottom: 15px;
+    }
+    
+    #about .pixel-arrow {
+        width: 25px;
+        height: 12px;
+        margin-bottom: 5px;
+    }
+    
+    #about .pixel-arrow::before,
+    #about .pixel-arrow::after {
+        width: 12px;
+        height: 2px;
+    }
 }
