@@ -77,10 +77,6 @@
     margin-top: 20px;
 }
 
-.about-text, .about-image {
-    flex: 1;
-}
-
 .about-text {
     flex: 1;
     position: relative;
@@ -163,30 +159,6 @@
     margin: 0;
 }
 
-/* Sparkle styling */
-.sparkle {
-    display: inline-block;
-    animation: sparkle-animation 1.5s infinite ease-in-out;
-    color: inherit;
-    position: relative;
-    vertical-align: middle;
-}
-
-@keyframes sparkle-animation {
-    0% { 
-        transform: scale(1) rotate(0deg); 
-        opacity: 0.8;
-    }
-    50% { 
-        transform: scale(1.2) rotate(15deg); 
-        opacity: 1;
-    }
-    100% { 
-        transform: scale(1) rotate(0deg); 
-        opacity: 0.8;
-    }
-}
-
 /* Interests list styling */
 .interests-list li {
     color: #3A3A70;
@@ -229,15 +201,6 @@
     display: block;
 }
 
-/* Verwijderen van oude tooltip styling */
-.tooltip {
-    display: none;
-}
-
-.interests-list li:hover .tooltip {
-    display: none;
-}
-
 /* Responsive aanpassingen voor dropdowns */
 @media screen and (max-width: 768px) {
     .dropdown-content {
@@ -254,6 +217,7 @@
 }
 
 .about-image {
+    flex: 0;
     width: 300px;
     height: 300px;
     position: relative;
@@ -261,6 +225,9 @@
     border: none;
     box-shadow: 0 0 0 3px var(--color-primary), 0 0 0 6px var(--color-blue-highlight-shadow);
     background-color: var(--color-white-transparent);
+    aspect-ratio: 1/1;
+    max-width: 300px;
+    min-width: 300px;
 }
 
 .about-image img {
@@ -269,17 +236,11 @@
     object-fit: cover;
     image-rendering: pixelated;
     border: none;
-}
-
-/* Retro terminal cursor effect */
-.about-text p::after {
-    content: '';
-    display: none;
-    animation: none;
+    aspect-ratio: 1/1;
 }
 
 /* Interactieve pixelblokken die echt interessant eruit zien */
-.pixel-block {
+/* .pixel-block {
     position: absolute;
     width: 12px;
     height: 12px;
@@ -297,7 +258,7 @@
 @keyframes float-block {
     0%, 100% { transform: rotate(45deg) translateY(0); }
     50% { transform: rotate(45deg) translateY(-15px); }
-}
+} */
 
 /* Een aantal pixel blokken plaatsen */
 .about-content::before {
@@ -328,17 +289,7 @@
 }
 
 /* Pixelart rand voor de afbeelding */
-.about-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    image-rendering: pixelated;
-}
-
-.about-image img:hover {
-    transform: scale(1.02);
-    outline-color: var(--color-blue-light);
-}
+/* This duplicate rule is being removed */
 
 /* Responsive Design */
 @media screen and (max-width: 768px) {
@@ -352,6 +303,10 @@
     .about-image {
         margin: 30px auto 0;
         max-width: 250px;
+        width: 250px;
+        height: 250px;
+        min-width: 250px;
+        flex: 0;
     }
     
     .about-text-divider {
@@ -371,6 +326,9 @@
 @media screen and (max-width: 480px) {
     .about-image {
         max-width: 200px;
+        width: 200px;
+        height: 200px;
+        min-width: 200px;
     }
 }
 
@@ -473,13 +431,12 @@
 }
 
 /* Eenvoudige decoratieve cirkelelementen */
-.about-decoration {
+/* .about-decoration {
     position: absolute;
     z-index: 1;
     opacity: 0.7;
 }
 
-/* Basisopmaak voor cirkels */
 .circle-1, .circle-2 {
     border-radius: 50%;
 }
@@ -498,7 +455,7 @@
     background-color: var(--color-blue-light);
     right: 20%;
     bottom: 30%;
-}
+} */
 
 .about-plus-1 {
     top: 15%;
