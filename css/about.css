@@ -27,15 +27,16 @@
 }
 
 #about h2 {
-    color: #3A3A70; 
-    margin-bottom: 30px;
-    font-size: 2.2rem;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-    margin-top: 0;
-    padding-top: 0;
     font-family: 'Press Start 2P', cursive;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+    font-size: 2.2rem;
+    color: var(--color-primary);
+    margin-bottom: 40px;
+    text-align: left;
+    text-shadow: 2px 2px 0px var(--color-blue-highlight-shadow);
+    width: 90%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Pixel stars styling for about section */
@@ -68,20 +69,21 @@
 
 .about-content {
     display: flex;
-    align-items: flex-start;
-    gap: 100px;
-    position: relative;
-    z-index: 1;
-    margin-bottom: 20px;
-    padding-top: 0;
-    margin-top: 20px;
+    justify-content: space-between;
+    gap: 40px;
+    margin-bottom: 40px;
+    width: 90%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .about-text {
     flex: 1;
     position: relative;
     padding: 25px;
-    box-shadow: 0 0 0 3px var(--color-primary), 0 0 0 6px var(--color-blue-highlight-shadow);
+    border: 2px solid var(--color-primary);
+    box-shadow: 0 0 0 2px var(--color-primary), 0 0 0 4px var(--color-blue-highlight-shadow);
     background-color: var(--color-white-transparent);
     backdrop-filter: blur(3px);
     animation: scanlines 2s linear infinite;
@@ -191,8 +193,8 @@
     font-size: 0.7rem;
     line-height: 1.5;
     letter-spacing: normal;
-    box-shadow: 0 0 0 3px var(--color-blue-light);
-    border: 2px dashed var(--color-primary);
+    border: 2px solid var(--color-primary);
+    box-shadow: 0 0 0 2px var(--color-primary), 0 0 0 4px var(--color-blue-highlight-shadow);
     margin: 0;
     font-weight: 500;
 }
@@ -222,8 +224,8 @@
     height: 300px;
     position: relative;
     overflow: hidden;
-    border: none;
-    box-shadow: 0 0 0 3px var(--color-primary), 0 0 0 6px var(--color-blue-highlight-shadow);
+    border: 2px solid var(--color-primary);
+    box-shadow: 0 0 0 2px var(--color-primary), 0 0 0 4px var(--color-blue-highlight-shadow);
     background-color: var(--color-white-transparent);
     aspect-ratio: 1/1;
     max-width: 300px;
@@ -474,95 +476,4 @@
     left: 0;
     right: 0;
     width: 100%;
-}
-
-/* Scroll arrows styling */
-#about .scroll-arrows-container {
-    position: absolute;
-    bottom: 60px;
-    left: 0;
-    right: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    z-index: 10;
-}
-
-#about .scroll-text {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 0.8rem;
-    color: #3A3A70;
-    margin-bottom: 20px;
-    text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.8);
-    letter-spacing: 1px;
-}
-
-#about .pixel-arrow {
-    width: 30px;
-    height: 15px;
-    position: relative;
-    margin-bottom: 6px;
-    animation: bounce 2s infinite ease-in-out;
-}
-
-#about .pixel-arrow:nth-child(2) {
-    animation-delay: 0.2s;
-}
-
-#about .pixel-arrow:nth-child(3) {
-    animation-delay: 0.4s;
-}
-
-#about .pixel-arrow::before,
-#about .pixel-arrow::after {
-    content: '';
-    position: absolute;
-    width: 15px;
-    height: 3px;
-    background-color: #3A3A70;
-}
-
-#about .pixel-arrow::before {
-    right: 50%;
-    transform: rotate(45deg);
-    transform-origin: right;
-}
-
-#about .pixel-arrow::after {
-    left: 50%;
-    transform: rotate(-45deg);
-    transform-origin: left;
-}
-
-@keyframes bounce {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(5px);
-    }
-}
-
-/* Responsive aanpassingen */
-@media screen and (max-width: 768px) {
-    #about .scroll-arrows-container {
-        bottom: 90px;
-    }
-    
-    #about .scroll-text {
-        font-size: 0.7rem;
-        margin-bottom: 15px;
-    }
-    
-    #about .pixel-arrow {
-        width: 25px;
-        height: 12px;
-        margin-bottom: 5px;
-    }
-    
-    #about .pixel-arrow::before,
-    #about .pixel-arrow::after {
-        width: 12px;
-        height: 2px;
-    }
 }

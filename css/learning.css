@@ -1,4 +1,4 @@
-/* Learning Outcomes styling */
+/* Learning Outcomes styling - Retro Vibes */
 section#learning-outcomes.section {
     background: linear-gradient(
         135deg,
@@ -10,10 +10,9 @@ section#learning-outcomes.section {
         var(--color-purple-light) 100%
     );
     margin-top: -20px;
-    padding-top: 100px;
+    padding: 80px 0;
     position: relative;
     overflow: hidden;
-    padding-bottom: 120px;
     min-height: calc(100vh - 40px);
 }
 
@@ -21,118 +20,175 @@ section#learning-outcomes.section {
     font-family: 'Press Start 2P', cursive;
     font-size: 2.2rem;
     color: var(--color-primary);
-    margin-bottom: 20px;
+    margin-bottom: 50px;
     text-align: left;
+    text-shadow: 2px 2px 0px var(--color-blue-highlight-shadow);
+    width: 90%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .outcomes-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-    margin-top: 40px;
-    margin-bottom: 60px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    width: 90%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 100px;
 }
 
 .outcome-card {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(5px);
+    background-color: var(--color-white-transparent);
+    backdrop-filter: blur(3px);
     padding: 25px;
-    border-radius: 4px;
-    box-shadow: 0 0 0 3px var(--color-primary), 0 0 0 6px var(--color-blue-highlight-shadow);
-    transition: transform 0.3s ease;
+    border: 2px solid var(--color-primary);
     position: relative;
-    overflow: hidden;
     display: flex;
     flex-direction: column;
     height: 100%;
-    min-height: 300px;
+    min-height: 280px;
+    overflow: hidden;
+    box-shadow: 0 0 0 2px var(--color-primary), 0 0 0 4px var(--color-blue-highlight-shadow);
+    animation: scanlines 2s linear infinite;
 }
 
 .outcome-card:hover {
-    transform: translateY(-5px);
+    /* No transform animation - removed */
 }
 
 .outcome-icon {
     font-family: 'Press Start 2P', cursive;
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: var(--color-primary);
-    margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    margin-bottom: 20px;
     padding: 15px;
     width: 60px;
     height: 60px;
-    background: var(--color-cream);
+    background: var(--color-white);
     border: 2px solid var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .outcome-card h3 {
     font-family: 'Press Start 2P', cursive;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     color: var(--color-primary);
-    margin: 15px 0;
-    min-height: 2.8em;
-    display: flex;
-    align-items: center;
+    margin: 0 0 20px 0;
+    line-height: 1.4;
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.1);
 }
 
 .outcome-card p {
     color: var(--color-primary);
     font-family: 'Open Sans', sans-serif;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     line-height: 1.6;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     flex-grow: 1;
-    min-height: 4.8em;
+    font-weight: 500;
+    text-align: justify;
+    text-justify: inter-word;
+    word-spacing: normal;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
 }
 
 .outcome-projects {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
-    margin-top: auto;
-    margin-bottom: 15px;
-    min-height: 35px;
-}
-
-.project-tag {
-    background: var(--color-primary);
-    color: var(--color-cream);
-    padding: 5px 10px;
-    font-size: 0.8rem;
-    border-radius: 2px;
-    font-family: 'Open Sans', sans-serif;
-    height: 25px;
-    display: flex;
-    align-items: center;
+    gap: 8px;
+    margin-bottom: 25px;
 }
 
 .outcome-evidence {
-    margin-top: auto;
+    margin-top: 15px;
+    text-align: center;
 }
 
 .view-evidence-btn {
+    display: inline-block;
     background: var(--color-primary);
-    color: var(--color-cream);
-    border: none;
-    padding: 10px 15px;
+    color: var(--color-white);
+    text-decoration: none;
+    padding: 10px 20px;
     font-family: 'Press Start 2P', cursive;
     font-size: 0.7rem;
-    cursor: pointer;
     position: relative;
-    width: 100%;
-    transition: all 0.3s ease;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    transition: all 0.2s ease;
+    border: none;
+    cursor: pointer;
 }
 
 .view-evidence-btn:hover {
-    background: var(--color-cream);
+    background: var(--color-blue-light);
     color: var(--color-primary);
+    transform: translateY(-2px);
 }
+
+.view-evidence-btn .pixel-border-top,
+.view-evidence-btn .pixel-border-right,
+.view-evidence-btn .pixel-border-bottom,
+.view-evidence-btn .pixel-border-left {
+    position: absolute;
+    background: var(--color-blue-highlight-shadow);
+    transition: all 0.2s ease;
+}
+
+.view-evidence-btn .pixel-border-top,
+.view-evidence-btn .pixel-border-bottom {
+    height: 2px;
+    width: 100%;
+    transform: scaleX(0);
+}
+
+.view-evidence-btn .pixel-border-right,
+.view-evidence-btn .pixel-border-left {
+    height: 100%;
+    width: 2px;
+    transform: scaleY(0);
+}
+
+.view-evidence-btn .pixel-border-top {
+    top: -2px;
+    left: 0;
+    transform-origin: right;
+}
+
+.view-evidence-btn .pixel-border-right {
+    top: 0;
+    right: -2px;
+    transform-origin: bottom;
+}
+
+.view-evidence-btn .pixel-border-bottom {
+    bottom: -2px;
+    left: 0;
+    transform-origin: left;
+}
+
+.view-evidence-btn .pixel-border-left {
+    top: 0;
+    left: -2px;
+    transform-origin: top;
+}
+
+.view-evidence-btn:hover .pixel-border-top,
+.view-evidence-btn:hover .pixel-border-bottom {
+    transform: scaleX(1);
+}
+
+.view-evidence-btn:hover .pixel-border-right,
+.view-evidence-btn:hover .pixel-border-left {
+    transform: scaleY(1);
+}
+
+/* Removed button animations and pixel border effects */
 
 /* Evidence Modal styling */
 .evidence-modal {
@@ -142,9 +198,8 @@ section#learning-outcomes.section {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(58, 58, 112, 0.9);
+    background: rgba(0, 0, 0, 0.8);
     z-index: 1000;
-    backdrop-filter: blur(5px);
 }
 
 .evidence-content {
@@ -156,9 +211,7 @@ section#learning-outcomes.section {
     position: relative;
     overflow-y: auto;
     padding: 30px;
-    border: 5px solid var(--color-primary);
-    box-shadow: 0 0 0 3px var(--color-primary), 0 0 0 8px var(--color-blue-highlight-shadow);
-    animation: scanlines 2s linear infinite;
+    border: 2px solid var(--color-primary);
 }
 
 .evidence-close {
@@ -177,17 +230,16 @@ section#learning-outcomes.section {
     text-align: center;
     margin-bottom: 30px;
     padding-bottom: 15px;
-    border-bottom: 3px solid var(--color-blue-light);
+    border-bottom: 2px solid var(--color-primary);
 }
 
 .evidence-title {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     color: var(--color-primary);
 }
 
 .evidence-section {
     display: none;
-    margin-bottom: 40px;
 }
 
 .evidence-section.active {
@@ -196,16 +248,14 @@ section#learning-outcomes.section {
 
 .evidence-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 30px;
-    margin-top: 20px;
 }
 
 .evidence-item {
-    background: rgba(255, 255, 255, 0.1);
-    border: 2px solid var(--color-primary);
+    background: var(--color-white);
     padding: 20px;
-    border-radius: 4px;
+    border: 2px solid var(--color-primary);
 }
 
 .evidence-preview {
@@ -213,7 +263,6 @@ section#learning-outcomes.section {
     height: 200px;
     overflow: hidden;
     margin-bottom: 15px;
-    border: 2px solid var(--color-blue-light);
 }
 
 .evidence-preview img {
@@ -224,30 +273,71 @@ section#learning-outcomes.section {
 
 .evidence-info h4 {
     font-family: 'Press Start 2P', cursive;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     color: var(--color-primary);
     margin-bottom: 10px;
 }
 
 .evidence-info p {
     font-size: 0.9rem;
-    margin-bottom: 15px;
     color: var(--color-primary);
+    margin-bottom: 15px;
 }
 
 .evidence-link {
     display: inline-block;
     background: var(--color-primary);
-    color: var(--color-cream);
+    color: var(--color-white);
     text-decoration: none;
-    padding: 8px 12px;
-    font-size: 0.8rem;
-    position: relative;
-    transition: all 0.3s ease;
+    padding: 8px 15px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.7rem;
 }
 
 .evidence-link:hover {
-    background: var(--color-cream);
+    background: var(--color-blue-light);
+    color: var(--color-primary);
+}
+
+.evidence-section h4 {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.1rem;
+    color: var(--color-primary);
+    margin-bottom: 15px;
+}
+
+.evidence-section p {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--color-primary);
+    margin-bottom: 20px;
+    text-align: justify;
+    text-justify: inter-word;
+    word-spacing: normal;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+}
+
+.evidence-section ul {
+    list-style: none;
+    padding-left: 20px;
+    margin-bottom: 20px;
+}
+
+.evidence-section li {
+    position: relative;
+    padding-left: 15px;
+    margin-bottom: 10px;
+    color: var(--color-primary);
+    font-family: 'Open Sans', sans-serif;
+}
+
+.evidence-section li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
     color: var(--color-primary);
 }
 
@@ -257,21 +347,21 @@ section#learning-outcomes.section {
         width: 95%;
         padding: 20px;
     }
-
+    
     .evidence-grid {
         grid-template-columns: 1fr;
     }
-
+    
     .evidence-preview {
         height: 150px;
     }
-
+    
     .evidence-info h4 {
-        font-size: 0.7rem;
+        font-size: 0.8rem;
     }
 
     #learning-outcomes h2 {
-        font-size: 1.2rem;
+        font-size: 1.4rem;
     }
 
     .outcomes-grid {
@@ -281,17 +371,17 @@ section#learning-outcomes.section {
 
     .outcome-card {
         padding: 20px;
-        min-height: 280px;
+        min-height: 220px;
     }
 
     .outcome-icon {
-        width: 50px;
-        height: 50px;
-        font-size: 1rem;
-        padding: 12px;
+        width: 45px;
+        height: 45px;
+        font-size: 0.9rem;
     }
 
     .outcome-card h3 {
-        font-size: 0.8rem;
+        font-size: 0.7rem;
     }
-} 
+}
+
