@@ -1,11 +1,20 @@
 #about {
-    background: linear-gradient(to top, #CDC1FF, #FFCCEA); 
+    background: linear-gradient(
+        135deg,
+        var(--color-purple-light) 0%,
+        var(--color-purple-gradient-1) 25%,
+        var(--color-purple-light) 50%,
+        var(--color-purple-gradient-2) 75%,
+        var(--color-purple-light) 85%,
+        var(--color-pink-light) 100%
+    );
     position: relative;
     overflow: hidden;
     --section-color: #CDC1FF;
     padding-bottom: 60px;
     padding-top: 30px;
     margin-top: 0;
+    min-height: calc(100vh - 40px);
 }
 
 .section#about {
@@ -13,23 +22,27 @@
 }
 
 #about .container {
-    padding-top: 20px;
+    padding-top: 60px;
     margin-top: 0;
 }
 
 #about h2 {
-    color: #3A3A70; 
-    margin-bottom: 30px;
+    font-family: 'Press Start 2P', cursive;
     font-size: 2.2rem;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-    margin-top: -80px;
-    padding-top: 0;
+    color: var(--color-primary);
+    margin-bottom: 40px;
+    text-align: left;
+    text-shadow: 2px 2px 0px var(--color-blue-highlight-shadow);
+    width: 90%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Pixel stars styling for about section */
 .about-pixel {
     position: absolute;
-    background-color: #3A3A70; 
+    background-color: var(--color-primary); 
     width: 15px;
     height: 15px;
 }
@@ -56,49 +69,80 @@
 
 .about-content {
     display: flex;
-    align-items: center;
-    gap: 30px;
-    position: relative;
-    z-index: 1;
+    justify-content: space-between;
+    gap: 40px;
     margin-bottom: 40px;
-    padding-top: 0;
-}
-
-.about-text, .about-image {
-    flex: 1;
+    width: 90%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .about-text {
     flex: 1;
+    position: relative;
+    padding: 25px;
+    border: 2px solid var(--color-primary);
+    box-shadow: 0 0 0 2px var(--color-primary), 0 0 0 4px var(--color-blue-highlight-shadow);
+    background-color: var(--color-white-transparent);
+    backdrop-filter: blur(3px);
+    animation: scanlines 2s linear infinite;
+}
+
+@keyframes scanlines {
+    0% {
+        background-image: linear-gradient(to bottom, 
+            transparent 50%, 
+            var(--color-primary-transparent) 50%);
+        background-size: 100% 4px;
+    }
+    100% {
+        background-image: linear-gradient(to bottom, 
+            transparent 50%, 
+            var(--color-primary-transparent) 50%);
+        background-size: 100% 4px;
+        background-position: 0 4px;
+    }
 }
 
 .about-text h2 {
-    color: #3A3A70; 
+    color: var(--color-primary); 
     margin-bottom: 25px;
     font-size: 2.2rem;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .about-text p {
-    color: #3A3A70; 
+    color: var(--color-primary);
     margin-bottom: 30px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    font-weight: 500;
 }
 
 .about-text-divider {
     height: 4px;
-    background-color: #3A3A70;
     width: 100%;
     max-width: 300px;
-    margin: 25px 0;
+    margin: 25px 0 30px 0;
     position: relative;
+    background: var(--color-primary);
 }
 
+/* Interests title zonder strepen */
 .interests-title {
     font-family: 'Press Start 2P', cursive;
     font-size: 1.2rem;
     color: #3A3A70;
     margin-top: 20px;
     margin-bottom: 15px;
+}
+
+/* Verwijderen van de strepen voor en na de titel */
+.interests-title::before, 
+.interests-title::after {
+    display: none;
 }
 
 .interests-columns {
@@ -111,14 +155,16 @@
 }
 
 .interests-list {
+    font-size: 1.2em;
     list-style-type: none;
     padding-left: 0;
     margin: 0;
 }
 
+/* Interests list styling */
 .interests-list li {
     color: #3A3A70;
-    margin-bottom: 8px;
+    margin-bottom: 5px;
     padding-left: 15px;
     position: relative;
 }
@@ -130,44 +176,161 @@
     color: #3A3A70;
 }
 
+/* Dropdown hover effect voor interests items */
+.dropdown-content {
+    display: none;
+    position: relative;
+    margin-top: 10px;
+    width: 230px;
+    padding: 0;
+}
+
+.dropdown-content p {
+    background-color: var(--color-primary);
+    color: var(--color-cream);
+    padding: 10px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.7rem;
+    line-height: 1.5;
+    letter-spacing: normal;
+    border: 2px solid var(--color-primary);
+    box-shadow: 0 0 0 2px var(--color-primary), 0 0 0 4px var(--color-blue-highlight-shadow);
+    margin: 0;
+    font-weight: 500;
+}
+
+.interests-list li:hover .dropdown-content {
+    display: block;
+}
+
+/* Responsive aanpassingen voor dropdowns */
+@media screen and (max-width: 768px) {
+    .dropdown-content {
+        width: 180px;
+    }
+    
+    .dropdown-content p {
+        font-size: 0.65rem;
+    }
+    
+    .interests-list li {
+        margin-bottom: 30px;
+    }
+}
+
 .about-image {
-    max-width: 300px;
+    flex: 0;
+    width: 300px;
+    height: 300px;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid var(--color-primary);
+    box-shadow: 0 0 0 2px var(--color-primary), 0 0 0 4px var(--color-blue-highlight-shadow);
+    background-color: var(--color-white-transparent);
     aspect-ratio: 1/1;
-    border: 4px solid #FFF6E3; 
+    max-width: 300px;
+    min-width: 300px;
 }
 
 .about-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 0; 
-    box-shadow: none;
+    image-rendering: pixelated;
+    border: none;
+    aspect-ratio: 1/1;
 }
+
+/* Interactieve pixelblokken die echt interessant eruit zien */
+/* .pixel-block {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-color: var(--color-blue-light);
+    z-index: 1;
+    transform: rotate(45deg);
+    opacity: 0.7;
+    animation: float-block 4s ease-in-out infinite;
+}
+
+.pixel-block:nth-child(odd) {
+    background-color: var(--color-primary);
+}
+
+@keyframes float-block {
+    0%, 100% { transform: rotate(45deg) translateY(0); }
+    50% { transform: rotate(45deg) translateY(-15px); }
+} */
+
+/* Een aantal pixel blokken plaatsen */
+.about-content::before {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-color: var(--color-blue-light);
+    top: -20px;
+    left: 10%;
+    transform: rotate(45deg);
+    opacity: 0.7;
+    animation: float-block 4s ease-in-out infinite;
+}
+
+.about-content::after {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-color: var(--color-primary);
+    bottom: -20px;
+    right: 10%;
+    transform: rotate(45deg);
+    opacity: 0.7;
+    animation: float-block 4s ease-in-out infinite;
+    animation-delay: 1s;
+}
+
+/* Pixelart rand voor de afbeelding */
+/* This duplicate rule is being removed */
 
 /* Responsive Design */
 @media screen and (max-width: 768px) {
     .about-content {
         flex-direction: column;
         text-align: center;
+        gap: 40px;
+        align-items: center;
     }
 
     .about-image {
         margin: 30px auto 0;
         max-width: 250px;
+        width: 250px;
+        height: 250px;
+        min-width: 250px;
+        flex: 0;
     }
     
     .about-text-divider {
-        margin: 20px auto;
+        margin: 20px auto 30px auto;
     }
     
     .interests-columns {
         gap: 15px;
+    }
+
+    .interests-title::before,
+    .interests-title::after {
+        display: none;
     }
 }
 
 @media screen and (max-width: 480px) {
     .about-image {
         max-width: 200px;
+        width: 200px;
+        height: 200px;
+        min-width: 200px;
     }
 }
 
@@ -254,20 +417,63 @@
     animation: about-twinkle 4.7s infinite ease-in-out;
 }
 
+/* Knipperende plus decoraties */
 .about-plus {
     position: absolute;
-    color: #3A3A70;
+    color: var(--color-primary);
     font-size: 30px;
     font-weight: bold;
     font-family: monospace;
+    animation: blink 2s ease-in-out infinite;
 }
 
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+/* Eenvoudige decoratieve cirkelelementen */
+/* .about-decoration {
+    position: absolute;
+    z-index: 1;
+    opacity: 0.7;
+}
+
+.circle-1, .circle-2 {
+    border-radius: 50%;
+}
+
+.circle-1 {
+    width: 40px;
+    height: 40px;
+    background-color: var(--color-pink-light);
+    left: 15%;
+    top: 20%;
+}
+
+.circle-2 {
+    width: 30px;
+    height: 30px;
+    background-color: var(--color-blue-light);
+    right: 20%;
+    bottom: 30%;
+} */
+
 .about-plus-1 {
-    top: 150px;
-    right: 250px;
+    top: 15%;
+    right: 25%;
 }
 
 .about-plus-2 {
-    bottom: 160px;
-    left: 180px;
-} 
+    bottom: 25%;
+    left: 20%;
+}
+
+/* Divider container aanpassing */
+#about .divider-container {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    width: 100%;
+}

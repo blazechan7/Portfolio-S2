@@ -7,7 +7,11 @@
 }
 
 #home .container {
-    padding-top: 20px;
+    padding-top: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
 }
 
 .star {
@@ -63,7 +67,7 @@
 
 .pixel-decoration {
     position: absolute;
-    background-color: #3A3A70; 
+    background-color: var(--color-primary);
     width: 15px;
     height: 15px;
 }
@@ -85,10 +89,11 @@
 
 .plus-decoration {
     position: absolute;
-    color: #3A3A70; 
+    color: var(--color-primary);
     font-size: 30px;
     font-weight: bold;
     font-family: monospace;
+    animation: blink 2s ease-in-out infinite;
 }
 
 .plus-1 {
@@ -105,7 +110,7 @@
     font-size: 2.8rem;
     margin-bottom: 20px;
     line-height: 1.4;
-    color: #3A3A70; 
+    color: var(--color-primary);
     text-transform: none;
     letter-spacing: 1px;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
@@ -115,13 +120,44 @@
     font-family: 'Press Start 2P', cursive;
     font-size: 1rem;
     margin-bottom: 20px;
-    color: #3A3A70; 
+    color: var(--color-primary);
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.home-text {
+    flex: 1;
+    position: relative;
+}
+
+.welcome-container {
+    position: relative;
+    padding: 25px;
+    border: 2px solid var(--color-primary);
+    box-shadow: 0 0 0 2px var(--color-primary), 0 0 0 4px var(--color-blue-highlight-shadow);
+    background-color: var(--color-white-transparent);
+    backdrop-filter: blur(3px);
+    animation: scanlines 2s linear infinite;
+}
+
+@keyframes scanlines {
+    0% {
+        background-image: linear-gradient(to bottom, 
+            transparent 50%, 
+            var(--color-primary-transparent) 50%);
+        background-size: 100% 4px;
+    }
+    100% {
+        background-image: linear-gradient(to bottom, 
+            transparent 50%, 
+            var(--color-primary-transparent) 50%);
+        background-size: 100% 4px;
+        background-position: 0 4px;
+    }
 }
 
 .home-text-divider {
     height: 4px;
-    background-color: #3A3A70;
+    background-color: var(--color-primary);
     width: 100%;
     max-width: 350px;
     margin: 20px 0;
@@ -130,33 +166,36 @@
 
 .home-content {
     display: flex;
-    align-items: center;
-    gap: 40px;
+    align-items: flex-end;
+    gap: 100px;
     width: 100%;
+    position: relative;
 }
 
 .home-image {
-    flex: 0.8;
-    max-width: 300px;
-    aspect-ratio: 1/1;
-    border: 4px solid #FFF6E3; 
+    width: 300px;
+    height: 300px;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid var(--color-primary);
+    box-shadow: 0 0 0 2px var(--color-primary), 0 0 0 4px var(--color-blue-highlight-shadow);
+    background-color: var(--color-white-transparent);
 }
 
 .home-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 0; 
-    box-shadow: none; 
-}
-
-.home-text {
-    flex: 1;
+    image-rendering: pixelated;
+    border: none;
 }
 
 .home-text p {
-    color: #3A3A70; 
+    color: var(--color-primary);
     max-width: 80%;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 500;
+    margin-bottom: 15px;
 }
 
 /* Responsive Design */
@@ -176,11 +215,17 @@
     .home-content {
         flex-direction: column;
         text-align: center;
+        gap: 40px;
     }
 
     .home-image {
         margin-bottom: 30px;
         max-width: 250px;
+    }
+    
+    .welcome-container {
+        max-width: 100%;
+        text-align: center;
     }
     
     .home-text p {
@@ -231,4 +276,44 @@
 
 .star-large-3 {
     animation: twinkle 4.5s infinite ease-in-out;
+}
+
+/* Animation voor knipperende plus-decoraties */
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+/* Interactieve pixelblokken */
+@keyframes float-block {
+    0%, 100% { transform: rotate(45deg) translateY(0); }
+    50% { transform: rotate(45deg) translateY(-15px); }
+}
+
+/* Een aantal pixel blokken plaatsen */
+.home-content::before {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-color: var(--color-blue-light);
+    top: -20px;
+    left: 10%;
+    transform: rotate(45deg);
+    opacity: 0.7;
+    animation: float-block 4s ease-in-out infinite;
+}
+
+.home-content::after {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-color: var(--color-primary);
+    bottom: -20px;
+    right: 10%;
+    transform: rotate(45deg);
+    opacity: 0.7;
+    animation: float-block 4s ease-in-out infinite;
+    animation-delay: 1s;
 }

@@ -1,19 +1,28 @@
 #projects {
-    background: linear-gradient(175deg, #CDC1FF, #FFCCEA); 
+    background: linear-gradient(
+        135deg,
+        var(--color-purple-light) 0%,
+        var(--color-purple-gradient-1) 25%,
+        var(--color-purple-light) 50%,
+        var(--color-purple-gradient-2) 75%,
+        var(--color-purple-light) 85%,
+        var(--color-pink-light) 100%
+    );
     position: relative;
     overflow: hidden;
     --section-color: #FFCCEA;
     padding-bottom: 70px;
-    padding-top: 30px;
+    padding-top: 100px;
+    margin-top: -20px;
 }
 
 #projects .container {
-    padding-top: 20px;
+    padding-top: 60px;
 }
 
 .project-pixel {
     position: absolute;
-    background-color: #3A3A70; 
+    background-color: var(--color-primary); 
     width: 15px;
     height: 15px;
 }
@@ -39,38 +48,16 @@
 }
 
 .projects-tabs {
-    display: flex;
-    margin-bottom: 30px;
-    border-bottom: 2px solid #FFF6E3; 
-    position: relative;
-    z-index: 1;
+    display: none;
 }
 
 .tab-button {
-    padding: 10px 20px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 600;
+    display: none;
+}
+
+.tab-content {
     position: relative;
-    font-family: 'Open Sans', sans-serif;
-    color: #3A3A70; 
-}
-
-.tab-button.active {
-    color: #3A3A70; 
-    font-weight: bold;
-}
-
-.tab-button.active::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background-color: #3A3A70; 
+    z-index: 1;
 }
 
 .tab-pane {
@@ -83,70 +70,118 @@
 
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
     position: relative;
     z-index: 1;
+    width: 90%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 100px;
+    margin-top: 40px;
 }
 
 .project-card {
-    background-color: white; 
-    border: 4px solid #3A3A70; 
-    overflow: hidden;
-    transition: transform 0.3s;
-}
-
-.project-card:hover {
-    transform: translateY(-5px);
-}
-
-.project-card-image {
-    width: 100%;
-    height: 0;
-    padding-bottom: 100%;
+    background-color: var(--color-white-transparent);
+    backdrop-filter: blur(5px);
+    padding: 30px;
+    border: 2px solid var(--color-primary);
+    box-shadow: 0 0 0 2px var(--color-primary), 0 0 0 4px var(--color-blue-highlight-shadow);
     position: relative;
+    animation: scanlines 2s linear infinite;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 300px;
     overflow: hidden;
-    border-bottom: 4px solid #3A3A70; 
 }
 
-.project-card-image img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.project-icon {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.2rem;
+    color: var(--color-primary);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    width: 60px;
+    height: 60px;
+    background: var(--color-white);
+    border: 2px solid var(--color-primary);
 }
 
 .project-card h3 {
-    padding: 15px 15px 8px;
     font-family: 'Press Start 2P', cursive;
-    font-size: 0.8rem;
-    color: #3A3A70; 
+    font-size: 0.9rem;
+    color: var(--color-primary);
+    margin: 0 0 25px 0;
+    line-height: 1.4;
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.1);
+    min-height: 2.8em;
+    display: flex;
+    align-items: center;
 }
 
 .project-card p {
-    padding: 0 15px 15px;
-    font-size: 0.9rem;
-    color: #3A3A70; 
+    color: var(--color-primary);
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    flex-grow: 1;
+    font-weight: 500;
+    text-align: justify;
+    text-justify: inter-word;
+    word-spacing: normal;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
 }
 
-/* Responsive Design */
-@media screen and (max-width: 768px) {
-    .projects-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .project-card-image {
-        max-width: 300px;
-        margin: 0 auto;
-    }
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 30px;
+    min-height: 25px;
 }
 
-@media screen and (max-width: 480px) {
-    .project-card-image {
-        max-width: 250px;
-    }
+.project-links {
+    display: flex;
+    gap: 15px;
+    margin-top: auto;
+}
+
+.view-live-btn,
+.view-project-btn {
+    background: var(--color-primary);
+    color: var(--color-white);
+    border: none;
+    padding: 10px 15px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.7rem;
+    cursor: pointer;
+    flex: 1;
+    transition: all 0.3s ease;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    text-align: center;
+}
+
+.view-live-btn:hover,
+.view-project-btn:hover {
+    background: var(--color-blue-light);
+    color: var(--color-primary);
+}
+
+.tab-pane p {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 500;
 }
 
 /* Pixel stars styling for projects section */
@@ -232,12 +267,19 @@
     animation: project-twinkle 4.9s infinite ease-in-out;
 }
 
+/* Animatie voor project plus decoraties */
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
 .project-plus {
     position: absolute;
-    color: #3A3A70;
+    color: var(--color-primary);
     font-size: 30px;
     font-weight: bold;
     font-family: monospace;
+    animation: blink 2s ease-in-out infinite;
 }
 
 .project-plus-1 {
@@ -251,8 +293,235 @@
 }
 
 #projects h2 {
-    color: #3A3A70; 
-    margin-bottom: 30px;
+    color: var(--color-primary); 
+    margin-bottom: 50px;
     font-size: 2.2rem;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-} 
+    width: 90%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
+
+/* Project details modal/popup styling */
+.project-details-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(58, 58, 112, 0.9);
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+}
+
+.project-details {
+    background: var(--color-white);
+    width: 90%;
+    max-width: 1200px;
+    max-height: 90vh;
+    margin: 5vh auto;
+    position: relative;
+    overflow-y: auto;
+    padding: 30px;
+    border: 2px solid var(--color-primary);
+    box-shadow: 0 0 0 2px var(--color-primary), 0 0 0 4px var(--color-blue-highlight-shadow);
+    animation: scanlines 2s linear infinite;
+}
+
+.project-details-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-family: 'Press Start 2P', cursive;
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: var(--color-primary);
+    cursor: pointer;
+}
+
+.project-details-header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--color-blue-light);
+}
+
+.project-details-title {
+    font-size: 1.2rem;
+    color: var(--color-primary);
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.project-details-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 30px;
+    border-bottom: 2px solid var(--color-blue-light);
+}
+
+.project-details-tab {
+    padding: 12px 25px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'Press Start 2P', cursive;
+    color: var(--color-primary);
+    font-size: 0.8rem;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.project-details-tab:hover {
+    color: var(--color-blue-light);
+}
+
+.project-details-tab.active {
+    color: var(--color-primary);
+    font-weight: 700;
+}
+
+.project-details-tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--color-blue-light);
+}
+
+.project-details-content {
+    padding: 20px 0;
+}
+
+.project-details-pane {
+    display: none;
+}
+
+.project-details-pane.active {
+    display: block;
+}
+
+.project-details-pane h3 {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1rem;
+    color: var(--color-primary);
+    margin-bottom: 20px;
+}
+
+.project-details-pane h4 {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.8rem;
+    color: var(--color-primary);
+    margin: 25px 0 15px;
+    opacity: 0.9;
+}
+
+.project-details-pane h5 {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.7rem;
+    color: var(--color-primary);
+    margin: 20px 0 10px;
+}
+
+.project-details-pane p {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--color-primary);
+    margin-bottom: 15px;
+    font-weight: 500;
+    text-align: justify;
+    text-justify: inter-word;
+    word-spacing: normal;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+}
+
+.project-details-pane ul {
+    list-style: none;
+    padding-left: 20px;
+    margin-bottom: 20px;
+}
+
+.project-details-pane li {
+    position: relative;
+    padding-left: 15px;
+    margin-bottom: 10px;
+    color: var(--color-primary);
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    font-weight: 500;
+}
+
+.project-details-pane li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--color-primary);
+}
+
+/* Geneste lijsten styling */
+.project-details-pane li ul {
+    margin: 10px 0 5px 5px;
+}
+
+.project-details-pane li li {
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+}
+
+/* Referentie link styling */
+.reference-link {
+    color: var(--color-primary);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--color-primary);
+    transition: all 0.2s ease;
+    font-weight: 600;
+}
+
+.reference-link:hover {
+    color: var(--color-blue-light);
+    border-bottom-color: var(--color-blue-light);
+}
+
+@media screen and (max-width: 768px) {
+    .project-details {
+        width: 95%;
+        padding: 20px;
+    }
+    
+    .project-details-tabs {
+        gap: 15px;
+    }
+    
+    .project-details-tab {
+        padding: 8px 15px;
+        font-size: 0.7rem;
+    }
+}
+
+.coming-soon-message {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1rem;
+    color: var(--color-primary);
+    text-align: center;
+    margin: 40px 0;
+    line-height: 1.8;
+}
+
+@media screen and (max-width: 768px) {
+    .coming-soon-message {
+        font-size: 0.8rem;
+        margin: 30px 0;
+    }
+}
+
