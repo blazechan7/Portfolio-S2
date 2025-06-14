@@ -347,15 +347,15 @@ section#learning-outcomes.section {
         width: 95%;
         padding: 20px;
     }
-    
+
     .evidence-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .evidence-preview {
         height: 150px;
     }
-    
+
     .evidence-info h4 {
         font-size: 0.8rem;
     }
@@ -383,5 +383,5 @@ section#learning-outcomes.section {
     .outcome-card h3 {
         font-size: 0.7rem;
     }
-}
+} 
 

@@ -3,16 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LO1 Evidence - Prototype & Testing</title>
+    <title>LO1 Evidence - Interactive Media Products</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@500;600&family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/evidence.css">
+    <link rel="stylesheet" href="css/projects.css">
 </head>
 <body class="evidence-page-body">
     <nav>
-        <div class="logo">Logo</div>
+        <div class="logo">
+            <img src="img/png2.png" alt="Logo">
+        </div>
         <ul class="nav-links">
             <li><a href="index.html#home">Home</a></li>
             <li><a href="index.html#about">About</a></li>
@@ -59,7 +62,7 @@
             <div class="evidence-content">
                 <div class="evidence-tabs">
                     <button class="evidence-tab active" data-tab="documents">Documents</button>
-                    <button class="evidence-tab" data-tab="reflection">Reflection</button>
+                    <button class="evidence-tab" data-tab="prototypes">Prototypes</button>
                 </div>
 
                 <div class="evidence-tab-content">
@@ -103,7 +106,7 @@
                                     <h3>Usertest Dev Cardan</h3>
                                     <p>User testing documentation for the development of Cardan interactive prototype, including testing methodology, results, and iterations based on user feedback.</p>
                                     <div class="document-meta">
-                                        <span class="document-date">March 2025</span>
+                                        <span class="document-date">May 2025</span>
                                     </div>
                                     <div class="document-actions">
                                         <a href="docs/Usertest dev cardan.pdf" class="view-pdf-btn" target="_blank">
@@ -132,7 +135,7 @@
                                     <h3>Interview, Persona & User Journey</h3>
                                     <p>Supporting research documentation including user interviews, persona development, and user journey mapping that informed the interactive prototype development process.</p>
                                     <div class="document-meta">
-                                        <span class="document-date">February 2025</span>
+                                        <span class="document-date">April 2025</span>
                                     </div>
                                     <div class="document-actions">
                                         <a href="docs/interview, persona, user journey visuele beperking.pdf" class="view-pdf-btn" target="_blank">
@@ -152,42 +155,90 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="document-card">
+                                <div class="document-preview">
+                                    <div class="pdf-icon">VIDEO</div>
+                                </div>
+                                <div class="document-info">
+                                    <h3>Stakeholder Testing - Boris Schmidt</h3>
+                                    <p>Video documentation of stakeholder testing session for the branding project, showing user feedback and prototype validation process.</p>
+                                    <div class="document-meta">
+                                        <span class="document-date">March 2025</span>
+                                    </div>
+                                    <div class="document-actions">
+                                        <a href="https://youtu.be/eSne1_XitAo" class="view-pdf-btn" target="_blank">
+                                            View Video
+                                            <span class="pixel-border-top"></span>
+                                            <span class="pixel-border-right"></span>
+                                            <span class="pixel-border-bottom"></span>
+                                            <span class="pixel-border-left"></span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
-                        <!-- PDF Embed Container -->
-                        <div class="pdf-embed-container" id="pdf-embed-container">
-                            <div class="pdf-embed-header">
-                                <h3 class="pdf-embed-title">Document Viewer</h3>
-                                <button class="pdf-embed-close">×</button>
-                            </div>
-                            <div class="pdf-embed-content">
-                                <iframe id="pdf-iframe" src="" width="100%" height="600px"></iframe>
+                        <!-- PDF Viewer Modal - Same style as project modals -->
+                        <div class="project-details-container" id="pdf-viewer-modal">
+                            <div class="project-details">
+                                <button class="project-details-close">X</button>
+                                <div class="project-details-header">
+                                    <h2 class="pdf-viewer-title">Document Viewer</h2>
+                                </div>
+                                <div class="pdf-viewer-content" style="height: 70vh; overflow: hidden;">
+                                    <iframe id="pdf-iframe" src="" style="width: 100%; height: 100%; border: none;"></iframe>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <div id="reflection" class="evidence-tab-pane">
-                        <div class="reflection-content">
-                            <h2>Personal Reflection</h2>
-                            <div class="reflection-text">
-                                <h3>Interactive Prototypes Development</h3>
-                                <p>Through developing interactive media products, I've gained valuable experience in creating functional prototypes that can be tested with real users. The focus was on building interactive elements that respond to user input and provide meaningful feedback.</p>
-                                
-                                <h3>User Testing Process</h3>
-                                <p>The main challenge was conducting effective user tests on the interactive prototypes. I learned to observe user behavior, collect meaningful data, and iterate on the prototypes based on testing results. The Cardan project was particularly valuable for understanding how users interact with complex interfaces.</p>
-                                
-                                <h3>Skills Developed</h3>
-                                <p>Through this learning outcome, I've developed skills in:</p>
-                                <ul>
-                                    <li>Creating interactive prototypes with functional elements</li>
-                                    <li>Conducting structured user testing sessions</li>
-                                    <li>Iterating prototypes based on user feedback</li>
-                                    <li>Documenting the testing process and results</li>
-                                    <li>Integrating research insights into prototype development</li>
-                                </ul>
-                                
-                                <h3>Impact on Design Process</h3>
-                                <p>This experience has shown me the importance of testing interactive elements early and often. The ability to create testable prototypes and gather user feedback has become a core part of my design methodology for interactive media products.</p>
+                    <div id="prototypes" class="evidence-tab-pane">
+                        <div class="documents-grid">
+
+
+                            <div class="document-card">
+                                <div class="document-preview">
+                                    <div class="pdf-icon">FIGMA</div>
+                                </div>
+                                <div class="document-info">
+                                    <h3>UX Cardan</h3>
+                                    <p>Figma prototype for the UX Cardan project, demonstrating user experience design for accessibility and inclusive design solutions.</p>
+                                    <div class="document-meta">
+                                        <span class="document-date">April 2025</span>
+                                    </div>
+                                    <div class="document-actions">
+                                        <a href="https://www.figma.com/design/FOH9oxsjnSPkeq4oPNKtBl/UX-project?node-id=0-1&t=l5ZKDK4nuxHSUCRw-1" class="view-pdf-btn" target="_blank">
+                                            View Figma
+                                            <span class="pixel-border-top"></span>
+                                            <span class="pixel-border-right"></span>
+                                            <span class="pixel-border-bottom"></span>
+                                            <span class="pixel-border-left"></span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="document-card">
+                                <div class="document-preview">
+                                    <div class="pdf-icon">FIGMA</div>
+                                </div>
+                                <div class="document-info">
+                                    <h3>Development Cardan</h3>
+                                    <p>Figma prototype for the Development Cardan project, featuring coded color blindness experience and accessibility implementation in website development.</p>
+                                    <div class="document-meta">
+                                        <span class="document-date">May 2025</span>
+                                    </div>
+                                    <div class="document-actions">
+                                        <a href="https://www.figma.com/design/WkqRhlysMfou34FWQrZkSV/dev-cardan?node-id=0-1&t=ZFT52Z4mpbbZ7yns-1" class="view-pdf-btn" target="_blank">
+                                            View Figma
+                                            <span class="pixel-border-top"></span>
+                                            <span class="pixel-border-right"></span>
+                                            <span class="pixel-border-bottom"></span>
+                                            <span class="pixel-border-left"></span>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

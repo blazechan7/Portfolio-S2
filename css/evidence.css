@@ -411,6 +411,9 @@
     font-size: 1rem;
     cursor: pointer;
     box-shadow: 2px 2px 0px var(--color-blue-highlight-shadow);
+    position: relative;
+    z-index: 1002;
+    pointer-events: auto;
 }
 
 .pdf-embed-close:hover {

@@ -19,38 +19,47 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // PDF embed functionality
-    const pdfEmbedContainer = document.getElementById('pdf-embed-container');
+    // PDF viewer functionality - Same pattern as project modals
+    const pdfViewerModal = document.getElementById('pdf-viewer-modal');
+    const pdfViewerClose = document.querySelector('#pdf-viewer-modal .project-details-close');
     const pdfIframe = document.getElementById('pdf-iframe');
+    const pdfViewerTitle = document.querySelector('.pdf-viewer-title');
     const embedButtons = document.querySelectorAll('.embed-pdf-btn');
-    const pdfEmbedClose = document.querySelector('.pdf-embed-close');
-    const pdfEmbedTitle = document.querySelector('.pdf-embed-title');
 
-    embedButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const pdfPath = button.getAttribute('data-pdf');
-            const documentTitle = button.closest('.document-card').querySelector('h3').textContent;
-            
-            pdfIframe.src = pdfPath;
-            pdfEmbedTitle.textContent = documentTitle;
-            pdfEmbedContainer.style.display = 'block';
-            document.body.style.overflow = 'hidden';
+    // Only initialize if elements exist
+    if (pdfViewerModal && pdfViewerClose && pdfIframe && pdfViewerTitle) {
+        // Open PDF viewer
+        embedButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const pdfPath = button.getAttribute('data-pdf');
+                const documentTitle = button.closest('.document-card').querySelector('h3').textContent;
+                
+                // Update modal content
+                pdfViewerTitle.textContent = documentTitle;
+                pdfIframe.src = pdfPath;
+                
+                // Show modal
+                pdfViewerModal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            });
         });
-    });
 
-    pdfEmbedClose.addEventListener('click', () => {
-        pdfEmbedContainer.style.display = 'none';
-        document.body.style.overflow = '';
-        pdfIframe.src = '';
-    });
-
-    pdfEmbedContainer.addEventListener('click', (e) => {
-        if (e.target === pdfEmbedContainer) {
-            pdfEmbedContainer.style.display = 'none';
+        // Close PDF viewer
+        pdfViewerClose.addEventListener('click', () => {
+            pdfViewerModal.style.display = 'none';
             document.body.style.overflow = '';
             pdfIframe.src = '';
-        }
-    });
+        });
+
+        // Close modal when clicking outside
+        pdfViewerModal.addEventListener('click', (e) => {
+            if (e.target === pdfViewerModal) {
+                pdfViewerModal.style.display = 'none';
+                document.body.style.overflow = '';
+                pdfIframe.src = '';
+            }
+        });
+    }
 
     // Navbar hover functionality
     const navbar = document.querySelector('nav');

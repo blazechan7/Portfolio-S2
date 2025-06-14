@@ -73,11 +73,20 @@ nav:hover, nav.visible {
 }
 
 .logo {
-    font-size: 16px;
-    font-family: 'Open Sans', sans-serif;
-    background-color: var(--color-beige);
-    padding: 10px 15px;
-    border: 2px solid var(--color-cream);
+    background-color: transparent;
+    padding: 0;
+    border: none;
+}
+
+.logo img {
+    height: 100px;
+    width: auto;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.logo img:hover {
+    opacity: 1;
 }
 
 .nav-links {
