@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const pdfViewerTitle = document.querySelector('.pdf-viewer-title');
     const embedButtons = document.querySelectorAll('.embed-pdf-btn');
 
-    // Only initialize if elements exist
+    // PDF viewer functionality - Same as LO1
     if (pdfViewerModal && pdfViewerClose && pdfIframe && pdfViewerTitle) {
         // Open PDF viewer
         embedButtons.forEach(button => {
