@@ -341,6 +341,10 @@
     cursor: pointer;
 }
 
+.project-details-close:hover {
+    color: var(--color-blue-light);
+}
+
 .project-details-header {
     text-align: center;
     margin-bottom: 30px;

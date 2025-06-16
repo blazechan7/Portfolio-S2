@@ -241,26 +241,7 @@
     aspect-ratio: 1/1;
 }
 
-/* Interactieve pixelblokken die echt interessant eruit zien */
-/* .pixel-block {
-    position: absolute;
-    width: 12px;
-    height: 12px;
-    background-color: var(--color-blue-light);
-    z-index: 1;
-    transform: rotate(45deg);
-    opacity: 0.7;
-    animation: float-block 4s ease-in-out infinite;
-}
 
-.pixel-block:nth-child(odd) {
-    background-color: var(--color-primary);
-}
-
-@keyframes float-block {
-    0%, 100% { transform: rotate(45deg) translateY(0); }
-    50% { transform: rotate(45deg) translateY(-15px); }
-} */
 
 /* Een aantal pixel blokken plaatsen */
 .about-content::before {
@@ -290,8 +271,7 @@
     animation-delay: 1s;
 }
 
-/* Pixelart rand voor de afbeelding */
-/* This duplicate rule is being removed */
+
 
 /* Responsive Design */
 @media screen and (max-width: 768px) {

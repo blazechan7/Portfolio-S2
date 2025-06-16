@@ -551,6 +551,51 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-
-
 });
+
+// Function to open project details modal from LO2 evidence page
+function openProjectDetails(projectKey) {
+    const projectMapping = {
+        'development-cardan': '3',
+        'portfolio-development': '5', 
+        'valentine-card': '6'
+    };
+    
+    const projectId = projectMapping[projectKey];
+    if (projectId) {
+        sessionStorage.setItem('openProjectModal', projectId);
+        window.location.href = 'index.html#projects';
+    }
+}
+
+// Function to check for project modal on page load
+function checkForProjectModal() {
+    const projectId = sessionStorage.getItem('openProjectModal');
+    if (projectId) {
+        sessionStorage.removeItem('openProjectModal');
+        
+        // Wait for page to fully load, then directly open modal
+        setTimeout(() => {
+            // Find the project card with the matching data-project attribute
+            const projectCard = document.querySelector(`[data-project="${projectId}"]`);
+            if (projectCard) {
+                // Trigger the click event on the Details button
+                const detailsButton = projectCard.querySelector('.view-project-btn');
+                if (detailsButton) {
+                    detailsButton.click();
+                    
+                    // After modal opens, scroll to projects section smoothly
+                    setTimeout(() => {
+                        const projectsSection = document.querySelector('#projects');
+                        if (projectsSection) {
+                            projectsSection.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }, 100);
+                }
+            }
+        }, 300); // Wait for page elements to be ready
+    }
+}
+
+// Check for project modal when page loads
+document.addEventListener('DOMContentLoaded', checkForProjectModal);
