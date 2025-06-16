@@ -1,5 +1,9 @@
 {
     "liveServer.settings.port": 5501,
+<<<<<<< HEAD
+=======
+    "liveServer.settings.CustomBrowser": "firefox",
+>>>>>>> dd9b710041c6d96b4c6210b65c1613c8bde71290
     "liveServer.settings.donotShowInfoMsg": true,
     "emmet.includeLanguages": {
         "javascript": "javascriptreact"
