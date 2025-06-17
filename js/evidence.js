@@ -19,20 +19,29 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // PDF viewer functionality - Same pattern as project modals
+    // PDF viewer functionality
     const pdfViewerModal = document.getElementById('pdf-viewer-modal');
     const pdfViewerClose = document.querySelector('#pdf-viewer-modal .project-details-close');
     const pdfIframe = document.getElementById('pdf-iframe');
     const pdfViewerTitle = document.querySelector('.pdf-viewer-title');
     const embedButtons = document.querySelectorAll('.embed-pdf-btn');
 
-    // PDF viewer functionality - Same as LO1
+    // PDF viewer functionality
     if (pdfViewerModal && pdfViewerClose && pdfIframe && pdfViewerTitle) {
         // Open PDF viewer
         embedButtons.forEach(button => {
             button.addEventListener('click', () => {
                 const pdfPath = button.getAttribute('data-pdf');
-                const documentTitle = button.closest('.document-card').querySelector('h3').textContent;
+                let documentTitle = 'Document Viewer';
+                
+                // Try to get title from document card if it exists
+                const documentCard = button.closest('.document-card');
+                if (documentCard) {
+                    const cardTitle = documentCard.querySelector('h3');
+                    if (cardTitle) {
+                        documentTitle = cardTitle.textContent;
+                    }
+                }
                 
                 // Update modal content
                 pdfViewerTitle.textContent = documentTitle;
@@ -61,29 +70,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Navbar hover functionality
-    const navbar = document.querySelector('nav');
-    const hoverZone = document.createElement('div');
-    hoverZone.style.position = 'fixed';
-    hoverZone.style.top = '0';
-    hoverZone.style.left = '0';
-    hoverZone.style.width = '100%';
-    hoverZone.style.height = '80px';
-    hoverZone.style.zIndex = '150';
-    document.body.appendChild(hoverZone);
-
-    hoverZone.addEventListener('mouseenter', () => {
-        navbar.style.transform = 'translateY(0)';
-        navbar.style.backgroundColor = 'var(--color-primary-nav)';
-        navbar.style.backdropFilter = 'blur(5px)';
-    });
-
-    document.addEventListener('mousemove', (e) => {
-        if (e.clientY > 80) {
-            navbar.style.transform = 'translateY(-100%)';
-        }
-    });
-
     // Pixel border effects for buttons
     const buttons = document.querySelectorAll('.back-button, .view-pdf-btn, .embed-pdf-btn');
     
@@ -104,10 +90,55 @@ document.addEventListener('DOMContentLoaded', () => {
             button.appendChild(border);
         });
     });
-}); 
+});
 
-// Project data - same as main site
+// Project data
 const projectsData = {
+    "1": {
+        "title": "Agatha's Coven",
+        "preview": "img/projects/agatha-preview.jpg",
+        "info": {
+            "title": "Project Information",
+            "content": `<p>During my fall break in 2024, I made a website about Agatha from Disney+. I was inspired by how popular the "Agatha All Along" song was. I made tarot cards for each character, and when you click on them, you can read more about that character.</p>
+            <p>I got the idea for the image slider from TikTok (<a href="https://www.tiktok.com/@nobody.nobody_01/video/7398778317240945926" target="_blank" class="reference-link">@nobody.nobody_01</a>). When you move your mouse over the images, they get bigger. Since I was new to making websites, this was a great way for me to learn HTML and CSS.</p>`
+        },
+        "process": {
+            "title": "Development Process",
+            "content": `<h4>1. Setup</h4>
+            <p>I started by making six tarot cards that sit next to each other. I used Marvel pictures (just for learning, not for real use). When you move your mouse over a card, it gets bigger just like in the TikTok video that inspired me.</p>
+
+            <h4>2. Text Design</h4>
+            <p>I wanted to make sure people could read the text easily. I asked ChatGPT about good fonts and how to make text stand out better. I ended up using colors that look good together and become brighter when you hover over them.</p>
+
+            <h4>3. Features</h4>
+            <ul>
+                <li>Each card takes you to a page about that character</li>
+                <li>The website works well on phones and computers</li>
+                <li>Everything stays in the right place no matter how you look at it</li>
+            </ul>
+
+            <h4>4. Sound</h4>
+            <p>I added music from the show. The music player has:</p>
+            <ul>
+                <li>Play and pause buttons that look nice</li>
+                <li>A volume control you can slide</li>
+                <li>Music that can play again and again</li>
+                <li>Buttons that match the website's style</li>
+            </ul>
+
+            <h4>5. Skills Gained</h4>
+            <ul>
+                <li>How to build basic websites with HTML and CSS</li>
+                <li>How to make things move when you hover over them</li>
+                <li>How to make websites work on all screen sizes</li>
+                <li>How to make multiple pages work together</li>
+                <li>How to add and style music controls</li>
+                <li>How to make everything look like it belongs together</li>
+            </ul>
+
+            <p>This was my first big website project. I did it because I wanted to learn, not because I had to for school. It shows how much I enjoy learning new things and making websites.</p>`
+        }
+    },
     "3": {
         "title": "Cardan Experience Platform",
         "preview": "img/projects/cardan-preview.jpg",
@@ -148,7 +179,8 @@ const projectsData = {
         "preview": "img/projects/portfolio-preview.jpg",
         "info": {
             "title": "Project Information",
-            "content": `<p>Documentation of the process of creating my portfolio website, including design decisions, technical implementation, and iterative improvements based on feedback.</p>`
+            "content": `<p>Documentation of the process of creating my portfolio website, including design decisions, technical implementation, and iterative improvements based on feedback.</p>
+            <iframe src="docs/Portfolio S2.pdf" style="width: 100%; height: 600px; border: none;"></iframe>`
         },
         "process": {
             "title": "Development Process",
@@ -187,7 +219,7 @@ const projectsData = {
                 <li>Everything moves smoothly</li>
                 <li>Confetti falls when you make the right choice</li>
                 <li>Colors change to match the mood</li>
-                         </ul>`
+            </ul>`
         }
     },
     "8": {
@@ -244,24 +276,45 @@ const projectsData = {
     }
 };
 
-// Function to open project details modal from LO2 evidence page
+// Project mapping
+const projectMapping = {
+    'development-cardan': '3',
+    'portfolio-development': '5', 
+    'valentine-card': '6',
+    'sxsw-grid': '8',
+    'agatha-coven': '1'
+};
+
+// Function to open project details modal
 function openProjectDetails(projectKey) {
-    const projectMapping = {
-        'development-cardan': '3',
-        'portfolio-development': '5', 
-        'valentine-card': '6',
-        'sxsw-grid': '8'
-    };
-    
+    console.log('DEBUG: Function called with key:', projectKey);
+    console.log('DEBUG: projectMapping:', projectMapping);
     const projectId = projectMapping[projectKey];
+    console.log('DEBUG: Found project ID:', projectId);
+    console.log('DEBUG: projectsData:', projectsData);
     const projectData = projectsData[projectId];
+    console.log('DEBUG: Found project data:', projectData);
+
+    if (!projectData) {
+        console.error('No project data found for key:', projectKey);
+        return;
+    }
+
+    // Check if modal already exists
+    let modal = document.getElementById('evidence-project-modal');
+    console.log('DEBUG: Existing modal:', modal);
+
+    if (!modal) {
+        console.log('DEBUG: Creating new modal');
+        // Create modal if it doesn't exist
+        modal = document.createElement('div');
+        modal.className = 'project-details-container';
+        modal.id = 'evidence-project-modal';
+        document.body.appendChild(modal);
+    }
     
-    if (!projectData) return;
-    
-    // Create modal with the same structure as main site
-    const modal = document.createElement('div');
-    modal.className = 'project-details-container';
-    modal.id = 'evidence-project-modal';
+    // Create modal content
+    console.log('DEBUG: Setting up modal content');
     modal.style.display = 'flex';
     modal.innerHTML = `
         <div class="project-details">
@@ -291,20 +344,20 @@ function openProjectDetails(projectKey) {
         </div>
     `;
     
-    document.body.appendChild(modal);
     document.body.style.overflow = 'hidden';
     
+    console.log('DEBUG: Setting up event listeners');
     // Add close functionality
     const closeBtn = modal.querySelector('.project-details-close');
     closeBtn.addEventListener('click', () => {
-        document.body.removeChild(modal);
+        modal.style.display = 'none';
         document.body.style.overflow = '';
     });
     
     // Close on background click
     modal.addEventListener('click', (e) => {
         if (e.target === modal) {
-            document.body.removeChild(modal);
+            modal.style.display = 'none';
             document.body.style.overflow = '';
         }
     });
@@ -326,4 +379,17 @@ function openProjectDetails(projectKey) {
             }
         });
     });
+    console.log('DEBUG: Modal setup complete');
+}
+
+// Function to open PDF viewer
+function openPdfViewer(pdfPath) {
+    const modal = document.getElementById('pdf-viewer-modal');
+    const iframe = document.getElementById('pdf-iframe');
+    
+    if (modal && iframe) {
+        iframe.src = pdfPath;
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
 } 

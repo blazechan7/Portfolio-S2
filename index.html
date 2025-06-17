@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="css/about.css">
     <link rel="stylesheet" href="css/projects.css">
     <link rel="stylesheet" href="css/learning.css">
+    <script src="js/evidence.js" defer></script>
+    <script src="js/projects.js" defer></script>
     <script src="script.js" defer></script>
 </head>
 <body>
@@ -96,7 +98,7 @@
         <div class="container">
             <div class="home-content">
                 <div class="home-image">
-                    <img src="img/cat.jpg" alt="Profile Image">
+                    <img src="img/me/3.png" alt="Profile Image">
                 </div>
                 <div class="home-text">
                     <h1 class="name-title">Puteri Basri</h1>
@@ -199,7 +201,7 @@
                     </div>
                 </div>
                 <div class="about-image">
-                    <img src="img/cat2.jpg" alt="Profile Photo">
+                    <img src="img/me/4.png" alt="Profile Photo">
                 </div>
             </div>
         </div>
@@ -410,7 +412,7 @@
                     </div>
                     <div class="project-links">
                         <a href="https://cardan-ervaringsplein.netlify.app/" target="_blank" class="view-live-btn">View Site</a>
-                        <button class="view-project-btn">Details</button>
+                        <button type="button" class="view-project-btn" onclick="openProjectDetails('development-cardan')">Details</button>
                     </div>
                 </div>
                 <div class="project-card" data-project="4">
@@ -424,7 +426,8 @@
                         <span class="project-tag">Visual Identity</span>
                     </div>
                     <div class="project-links">
-                        <button class="view-project-btn">Details</button>
+                        <button class="view-project-btn" onclick="window.open('docs/projectx.pdf', '_blank')">View PDF</button>
+                        <button class="view-project-btn embed-pdf-btn" data-pdf="docs/projectx.pdf">Embed View</button>
                     </div>
                 </div>
                 <div class="project-card" data-project="5">
@@ -438,7 +441,8 @@
                         <span class="project-tag">Portfolio</span>
                     </div>
                     <div class="project-links">
-                        <button class="view-project-btn">Details</button>
+                        <button class="view-project-btn" onclick="window.open('docs/Portfolio S2.pdf', '_blank')">View PDF</button>
+                        <button class="view-project-btn embed-pdf-btn" data-pdf="docs/Portfolio S2.pdf">Embed View</button>
                     </div>
                 </div>
                 <div class="project-card" data-project="6">
@@ -453,7 +457,7 @@
                     </div>
                     <div class="project-links">
                         <a href="https://blazechan7-valentine2025.netlify.app/" target="_blank" class="view-live-btn">View Site</a>
-                        <button class="view-project-btn">Details</button>
+                        <button type="button" class="view-project-btn" onclick="openProjectDetails('valentine-card')">Details</button>
                     </div>
                 </div>
                 <div class="project-card" data-project="1">
@@ -467,7 +471,7 @@
                     </div>
                     <div class="project-links">
                         <a href="https://agathacoveninfo.netlify.app/" target="_blank" class="view-live-btn">View Site</a>
-                        <button class="view-project-btn">Details</button>
+                        <button type="button" class="view-project-btn" onclick="openProjectDetails('agatha-coven')">Details</button>
                     </div>
                 </div>
                 <div class="project-card" data-project="8">
@@ -482,7 +486,7 @@
                     </div>
                     <div class="project-links">
                         <a href="https://grids-practice.netlify.app/" target="_blank" class="view-live-btn">View Site</a>
-                        <button class="view-project-btn">Details</button>
+                        <button type="button" class="view-project-btn" onclick="openProjectDetails('sxsw-grid')">Details</button>
                     </div>
                 </div>
             </div>
@@ -495,7 +499,7 @@
     </section>
 
     <!-- Project Details Modal -->
-    <div class="project-details-container" id="project-details-modal">
+    <div class="project-details-container" id="evidence-project-modal" style="display: none;">
         <div class="project-details">
             <button class="project-details-close">X</button>
             <div class="project-details-header">
@@ -503,7 +507,7 @@
             </div>
             <div class="project-details-preview">
                 <div class="preview-image-container">
-                    <img src="" alt="Project Preview" class="project-preview-image">
+                    <img src="" alt="" class="project-preview-image">
                 </div>
             </div>
             <div class="project-details-tabs">
@@ -519,6 +523,19 @@
                     <h3>Development Process</h3>
                     <div class="process-content"></div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PDF Viewer Modal -->
+    <div class="project-details-container" id="pdf-viewer-modal">
+        <div class="project-details">
+            <button class="project-details-close">X</button>
+            <div class="project-details-header">
+                <h2 class="pdf-viewer-title">Document Viewer</h2>
+            </div>
+            <div class="pdf-viewer-content">
+                <iframe id="pdf-iframe" src="" class="pdf-iframe"></iframe>
             </div>
         </div>
     </div>

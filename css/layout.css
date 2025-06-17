@@ -55,21 +55,22 @@ nav {
     justify-content: space-between;
     align-items: center;
     padding: 15px 80px;
-    background-color: transparent;
-    box-shadow: none;
-    z-index: 100;
-    transition: all 0.5s ease;
+    background-color: var(--color-primary-nav);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(0);
+    opacity: 0;
+    pointer-events: none;
+}
+
+nav.visible {
+    opacity: 1;
+    pointer-events: auto;
 }
 
 nav.scrolled {
-    background-color: transparent;
     transform: translateY(-100%);
-}
-
-nav:hover, nav.visible {
-    transform: translateY(0);
-    background-color: var(--color-primary-nav);
-    backdrop-filter: blur(5px);
 }
 
 .logo {
@@ -673,4 +674,29 @@ section#projects {
     font-style: italic;
     font-family: 'Open Sans', sans-serif;
     font-size: 0.7rem;
+}
+
+/* Voorkom alle woordafbrekingen */
+*, 
+*::before, 
+*::after {
+    -webkit-hyphens: none !important;
+    -moz-hyphens: none !important;
+    -ms-hyphens: none !important;
+    hyphens: none !important;
+    word-break: keep-all !important;
+    overflow-wrap: normal !important;
+    word-wrap: normal !important;
+    white-space: normal !important;
+}
+
+/* Specifieke styling voor justified tekst */
+[style*="text-align: justify"],
+.justify-text,
+p,
+.info-content,
+.process-content,
+.project-card p,
+.evidence-content p {
+    text-align: justify;
 } 
