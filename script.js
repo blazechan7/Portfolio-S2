@@ -1,16 +1,44 @@
+'use strict';
+
 // Initialize boxes and start website functions
 document.addEventListener('DOMContentLoaded', () => {
-    const pixelDividers = document.querySelectorAll('.pixel-divider');
-    const navbar = document.querySelector('nav');
-    const loadingScreen = document.getElementById('loading-screen');
+    // Veilig elementen ophalen
+    const safeQuerySelector = (selector) => {
+        try {
+            return document.querySelector(selector);
+        } catch (e) {
+            console.warn(`Error selecting ${selector}:`, e);
+            return null;
+        }
+    };
+
+    const safeQuerySelectorAll = (selector) => {
+        try {
+            return document.querySelectorAll(selector);
+        } catch (e) {
+            console.warn(`Error selecting all ${selector}:`, e);
+            return [];
+        }
+    };
+
+    // Hoofdelementen
+    const pixelDividers = safeQuerySelectorAll('.pixel-divider');
+    const navbar = safeQuerySelector('nav');
+    const loadingScreen = safeQuerySelector('#loading-screen');
     const hasVisited = sessionStorage.getItem('hasVisitedPortfolio');
     
     // Functie om de navbar zichtbaar te maken
     const showNavbar = () => {
         if (navbar) {
-            requestAnimationFrame(() => {
+            try {
+                requestAnimationFrame(() => {
+                    navbar.classList.add('visible');
+                });
+            } catch (e) {
+                console.warn('Error showing navbar:', e);
+                // Fallback
                 navbar.classList.add('visible');
-            });
+            }
         }
     };
 
@@ -61,35 +89,41 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Mobile navigation
-    const nav = document.querySelector('.nav-links');
-    const navLinks = document.querySelectorAll('.nav-links li');
+    const nav = safeQuerySelector('.nav-links');
+    const navLinks = safeQuerySelectorAll('.nav-links li');
 
     // Smooth scroll when clicking menu links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    navLinks.forEach(anchor => {
         anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            // Close mobile menu if open
-            if (nav.classList.contains('nav-active')) {
-                nav.classList.remove('nav-active');
-                navLinks.forEach(link => {
-                    link.style.animation = '';
-                });
+            try {
+                e.preventDefault();
+                
+                // Close mobile menu if open
+                if (nav && nav.classList.contains('nav-active')) {
+                    nav.classList.remove('nav-active');
+                    navLinks.forEach(link => {
+                        link.style.animation = '';
+                    });
+                }
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = safeQuerySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+            } catch (e) {
+                console.warn('Error in smooth scroll:', e);
             }
-            
-            const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-            
-            window.scrollTo({
-                top: targetElement.offsetTop - 70,
-                behavior: 'smooth'
-            });
         });
     });
 
     // Scroll reveal animation
     function revealOnScroll() {
-        const sections = document.querySelectorAll('.section');
+        const sections = safeQuerySelectorAll('.section');
         sections.forEach(section => {
             const sectionTop = section.getBoundingClientRect().top;
             const windowHeight = window.innerHeight;
@@ -105,8 +139,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Update active menu item on scroll
     window.addEventListener('scroll', () => {
-        const sections = document.querySelectorAll('.section');
-        const navLinks = document.querySelectorAll('.nav-links a');
+        const sections = safeQuerySelectorAll('.section');
+        const navLinks = safeQuerySelectorAll('.nav-links a');
         
         let current = '';
         
@@ -133,32 +167,44 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Add scroll event listener
     window.addEventListener('scroll', () => {
-        const currentScrollY = window.scrollY;
-        
-        if (currentScrollY > lastScrollY && currentScrollY > scrollThreshold) {
-            // Hide the navbar when scrolling down and past threshold
-            navbar.classList.add('scrolled');
-        } else {
-            // Show the navbar when scrolling up or at top
-            navbar.classList.remove('scrolled');
+        try {
+            if (!navbar) return;
+
+            const currentScrollY = window.scrollY;
+            
+            if (currentScrollY > lastScrollY && currentScrollY > scrollThreshold) {
+                // Hide the navbar when scrolling down and past threshold
+                navbar.classList.add('scrolled');
+            } else {
+                // Show the navbar when scrolling up or at top
+                navbar.classList.remove('scrolled');
+            }
+            
+            lastScrollY = currentScrollY;
+        } catch (e) {
+            console.warn('Error in scroll behavior:', e);
         }
-        
-        lastScrollY = currentScrollY;
     });
 
     // Make a hover-zone at the top of the page
-    const hoverZone = document.createElement('div');
-    hoverZone.style.position = 'fixed';
-    hoverZone.style.top = '0';
-    hoverZone.style.left = '0';
-    hoverZone.style.width = '100%';
-    hoverZone.style.height = '20px';
-    hoverZone.style.zIndex = '999';
-    document.body.appendChild(hoverZone);
-    
-    // Show navbar on hover
-    hoverZone.addEventListener('mouseenter', () => {
-        navbar.classList.remove('scrolled');
-    });
+    try {
+        const hoverZone = document.createElement('div');
+        Object.assign(hoverZone.style, {
+            position: 'fixed',
+            top: '0',
+            left: '0',
+            width: '100%',
+            height: '20px',
+            zIndex: '999'
+        });
+        document.body.appendChild(hoverZone);
+        
+        // Show navbar on hover
+        hoverZone.addEventListener('mouseenter', () => {
+            navbar.classList.remove('scrolled');
+        });
+    } catch (e) {
+        console.warn('Error creating hover zone:', e);
+    }
 
 });
