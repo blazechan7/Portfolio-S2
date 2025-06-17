@@ -27,17 +27,36 @@ document.addEventListener('DOMContentLoaded', () => {
     const loadingScreen = safeQuerySelector('#loading-screen');
     const hasVisited = sessionStorage.getItem('hasVisitedPortfolio');
     
+    // Zorg ervoor dat de navbar initieel verborgen is
+    if (navbar) {
+        navbar.style.opacity = '0';
+        navbar.style.transform = 'translateY(0)';
+        navbar.style.transition = 'none';
+
+        // Reset de transitie na een korte vertraging
+        setTimeout(() => {
+            navbar.style.transition = 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+        }, 100);
+    }
+
     // Functie om de navbar zichtbaar te maken
     const showNavbar = () => {
-        if (navbar) {
-            try {
+        if (!navbar) return;
+
+        try {
+            // Gebruik een timeout om de browser tijd te geven om de transitie te resetten
+            setTimeout(() => {
                 requestAnimationFrame(() => {
                     navbar.classList.add('visible');
+                    navbar.style.opacity = '1';
                 });
-            } catch (e) {
-                console.warn('Error showing navbar:', e);
-                // Fallback
+            }, 150);
+        } catch (e) {
+            console.warn('Error showing navbar:', e);
+            // Fallback
+            if (navbar) {
                 navbar.classList.add('visible');
+                navbar.style.opacity = '1';
             }
         }
     };
@@ -92,8 +111,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const nav = safeQuerySelector('.nav-links');
     const navLinks = safeQuerySelectorAll('.nav-links li');
 
-    // Smooth scroll when clicking menu links
-    navLinks.forEach(anchor => {
+    // Smooth scroll when clicking menu links - verbeterde versie
+    const allAnchorLinks = safeQuerySelectorAll('a[href^="#"]');
+    allAnchorLinks.forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             try {
                 e.preventDefault();
@@ -161,50 +181,81 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Navbar scroll behavior
+    // Scroll behavior met throttling
     let lastScrollY = window.scrollY;
     const scrollThreshold = 100;
-    
-    // Add scroll event listener
-    window.addEventListener('scroll', () => {
-        try {
-            if (!navbar) return;
+    let scrollTimeout;
 
-            const currentScrollY = window.scrollY;
-            
-            if (currentScrollY > lastScrollY && currentScrollY > scrollThreshold) {
-                // Hide the navbar when scrolling down and past threshold
-                navbar.classList.add('scrolled');
-            } else {
-                // Show the navbar when scrolling up or at top
-                navbar.classList.remove('scrolled');
-            }
-            
-            lastScrollY = currentScrollY;
-        } catch (e) {
-            console.warn('Error in scroll behavior:', e);
+    window.addEventListener('scroll', () => {
+        if (!navbar) return;
+
+        // Gebruik een timeout om de scroll handler te throttlen
+        if (!scrollTimeout) {
+            scrollTimeout = setTimeout(() => {
+                try {
+                    const currentScrollY = window.scrollY;
+                    
+                    if (currentScrollY > lastScrollY && currentScrollY > scrollThreshold) {
+                        navbar.classList.add('scrolled');
+                    } else {
+                        navbar.classList.remove('scrolled');
+                    }
+                    
+                    lastScrollY = currentScrollY;
+                } catch (e) {
+                    console.warn('Error in scroll handler:', e);
+                }
+                
+                scrollTimeout = null;
+            }, 16); // ~60fps throttling
         }
     });
 
-    // Make a hover-zone at the top of the page
+    // Hover zone aan de top van de pagina (van script-Blaze.js)
     try {
         const hoverZone = document.createElement('div');
-        Object.assign(hoverZone.style, {
-            position: 'fixed',
-            top: '0',
-            left: '0',
-            width: '100%',
-            height: '20px',
-            zIndex: '999'
-        });
+        hoverZone.style.position = 'fixed';
+        hoverZone.style.top = '0';
+        hoverZone.style.left = '0';
+        hoverZone.style.width = '100%';
+        hoverZone.style.height = '20px';
+        hoverZone.style.zIndex = '999';
+        hoverZone.style.pointerEvents = 'auto';
         document.body.appendChild(hoverZone);
         
         // Show navbar on hover
         hoverZone.addEventListener('mouseenter', () => {
-            navbar.classList.remove('scrolled');
+            if (navbar) {
+                navbar.classList.remove('scrolled');
+            }
         });
     } catch (e) {
         console.warn('Error creating hover zone:', e);
     }
 
+    // Window resize handler voor responsive pixel dividers
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        if (resizeTimeout) {
+            clearTimeout(resizeTimeout);
+        }
+        
+        resizeTimeout = setTimeout(() => {
+            if (pixelDividers.length > 0) {
+                const screenWidth = window.innerWidth;
+                const pixelSize = 10;
+                const numberOfPixels = Math.ceil(screenWidth / pixelSize) + 1;
+                
+                pixelDividers.forEach(pixelDivider => {
+                    pixelDivider.innerHTML = '';
+                    
+                    for (let i = 0; i < numberOfPixels; i++) {
+                        const pixelItem = document.createElement('div');
+                        pixelItem.classList.add('pixel-divider-item');
+                        pixelDivider.appendChild(pixelItem);
+                    }
+                });
+            }
+        }, 250); // Debounce resize events
+    });
 });

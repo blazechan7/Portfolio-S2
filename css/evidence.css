@@ -20,28 +20,10 @@
     overflow: hidden;
 }
 
-/* Hide navbar by default on evidence page */
+/* Navbar styling for evidence page */
 .evidence-page-body nav {
-    transform: translateY(-100%) !important;
-    transition: all 0.3s ease !important;
-}
-
-/* Create hover area at top of page */
-.evidence-page-body::after {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 80px;
-    z-index: 150;
-    background: transparent;
-}
-
-/* Show navbar when hovering over top area */
-.evidence-page-body::after:hover ~ nav,
-.evidence-page-body:hover nav {
     transform: translateY(0) !important;
+    transition: all 0.3s ease !important;
     background-color: var(--color-primary-nav) !important;
     backdrop-filter: blur(5px) !important;
 }
