@@ -233,6 +233,33 @@ document.addEventListener('DOMContentLoaded', () => {
         console.warn('Error creating hover zone:', e);
     }
 
+    // Scroll down arrows functionality
+    const scrollArrowsContainers = safeQuerySelectorAll('.scroll-arrows-container');
+    scrollArrowsContainers.forEach(container => {
+        container.addEventListener('click', function() {
+            try {
+                // Find the current section
+                const currentSection = container.closest('.section');
+                if (!currentSection) return;
+                
+                // Find the next section
+                const nextSection = currentSection.nextElementSibling;
+                if (nextSection && nextSection.classList.contains('section')) {
+                    // Scroll to the next section
+                    window.scrollTo({
+                        top: nextSection.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+            } catch (e) {
+                console.warn('Error in scroll down:', e);
+            }
+        });
+
+        // Add cursor pointer to indicate it's clickable
+        container.style.cursor = 'pointer';
+    });
+
     // Window resize handler voor responsive pixel dividers
     let resizeTimeout;
     window.addEventListener('resize', () => {
@@ -258,4 +285,4 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }, 250); // Debounce resize events
     });
-});
+}); 
